@@ -6,6 +6,10 @@ A battle-tested reference architecture for Claude Code power users. Not a plugin
 
 **Available in:** [English](README.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [简体中文](README.zh.md)
 
+<p align="center">
+  <img src="assets/walkthrough.gif" alt="Claude Code Blueprint Walkthrough" width="720">
+</p>
+
 ## What This Is
 
 This repository documents a production Claude Code setup built over numerous sessions of real development work. Every agent, skill, hook, and rule exists because a real incident taught us it was needed.
