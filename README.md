@@ -79,6 +79,14 @@ See [WHY.md](WHY.md) for the incidents and lessons behind every component. This 
 
 While this blueprint is built for Claude Code, the **concepts are universal**. See [CROSS-TOOL-GUIDE.md](CROSS-TOOL-GUIDE.md) for a mapping of how each concept translates to Cursor, Codex CLI, Gemini CLI, and Windsurf.
 
+## Starter Presets
+
+Not sure where to start? **[PRESETS.md](PRESETS.md)** has ready-to-copy file lists for solo devs, teams, and CI/CD pipelines -- with exact settings.json snippets for each tier.
+
+## Benchmarks
+
+Real-world performance data. **[BENCHMARKS.md](BENCHMARKS.md)** shows token savings, cost impact, and quality metrics from production use.
+
 ## Troubleshooting
 
 See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for solutions to common issues -- hooks not firing, agents failing, MCP crashes, cost surprises, and Windows-specific problems.
