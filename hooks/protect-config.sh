@@ -2,9 +2,11 @@
 # Hook: PreToolUse (Write|Edit) — Config Protection
 # Prevents weakening linter/formatter/build configs by prompting for confirmation.
 
+PYTHON=$(command -v python3 2>/dev/null || command -v python 2>/dev/null || echo "python3")
+
 INPUT=$(cat)
 
-FILE_PATH=$(echo "$INPUT" | python3 -c "
+FILE_PATH=$(echo "$INPUT" | $PYTHON -c "
 import sys, json
 try:
     d = json.load(sys.stdin)

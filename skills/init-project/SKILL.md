@@ -5,6 +5,8 @@ user-invocable: true
 argument-hint: "[project-name] [type: nuxt|next|vue-springboot|expo|node|library]"
 ---
 
+> **Before using:** Replace `{PROJECTS_ROOT}`, `{BOILERPLATE_NAME}`, and `{MEMORYCORE_PATH}` with your actual paths in your copy of this skill.
+
 Initialize a new project at {PROJECTS_ROOT}/$ARGUMENTS:
 
 1. **Parse arguments**: Extract project name and type (default: nuxt)

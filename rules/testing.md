@@ -6,13 +6,16 @@ paths:
   - "**/__tests__/**"
 ---
 
+<!-- This template uses Vitest + Vue as examples. Adapt framework references, directory structure,
+     and mock patterns to match your project's test stack. -->
+
 # Testing Rules & Conventions
 
 These rules apply when writing or modifying tests for your project.
 
 ## Test Framework
 
-- **Framework**: Vitest (NOT Jest)
+- **Framework**: [Your test runner -- e.g., Vitest, Jest, Pytest, Go test, RSpec]
 - **Run command**: Check CLAUDE.md for test command
 - **Watch mode**: Append `--watch` to the test command (auto-runs on file changes)
 - **Current baseline**: Check CLAUDE.md for current test baseline — all must pass (bundle-size suite auto-skips if .output/ absent; run build first to include it)

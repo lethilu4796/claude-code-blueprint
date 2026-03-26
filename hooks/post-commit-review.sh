@@ -3,8 +3,10 @@
 # Only triggers on actual git commit commands, not amend/help/dry-run.
 # Pattern: same stdin JSON parsing as notify-file-changed.sh
 
+PYTHON=$(command -v python3 2>/dev/null || command -v python 2>/dev/null || echo "python3")
+
 INPUT=$(cat)
-COMMAND=$(echo "$INPUT" | python -c "
+COMMAND=$(echo "$INPUT" | $PYTHON -c "
 import sys, json
 try:
     d = json.load(sys.stdin)
@@ -56,12 +58,12 @@ else
 fi
 
 # Escape strings for JSON output
-FILE_LIST_ESCAPED=$(echo "$FILE_LIST" | python -c "
+FILE_LIST_ESCAPED=$(echo "$FILE_LIST" | $PYTHON -c "
 import sys, json
 print(json.dumps(sys.stdin.read().strip())[1:-1])
 " 2>/dev/null)
 
-COMMIT_ESCAPED=$(echo "$COMMIT_MSG" | python -c "
+COMMIT_ESCAPED=$(echo "$COMMIT_MSG" | $PYTHON -c "
 import sys, json
 print(json.dumps(sys.stdin.read().strip())[1:-1])
 " 2>/dev/null)

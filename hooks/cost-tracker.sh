@@ -2,6 +2,8 @@
 # Hook: Stop (async) — Cost Tracker
 # Appends a JSONL entry per stop event for session cost visibility.
 
+PYTHON=$(command -v python3 2>/dev/null || command -v python 2>/dev/null || echo "python3")
+
 METRICS_DIR="$HOME/.claude/metrics"
 METRICS_FILE="$METRICS_DIR/costs.jsonl"
 
@@ -16,7 +18,7 @@ TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 # Monthly rotation — archive when month changes
 CURRENT_MONTH=$(date +"%Y-%m")
 if [ -f "$METRICS_FILE" ]; then
-  FIRST_LINE_MONTH=$(head -1 "$METRICS_FILE" | python3 -c "import sys,json; print(json.load(sys.stdin).get('timestamp','')[:7])" 2>/dev/null)
+  FIRST_LINE_MONTH=$(head -1 "$METRICS_FILE" | $PYTHON -c "import sys,json; print(json.load(sys.stdin).get('timestamp','')[:7])" 2>/dev/null)
   if [ -n "$FIRST_LINE_MONTH" ] && [ "$FIRST_LINE_MONTH" != "$CURRENT_MONTH" ]; then
     mv "$METRICS_FILE" "$METRICS_DIR/costs-$FIRST_LINE_MONTH.jsonl"
   fi

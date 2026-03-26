@@ -9,13 +9,15 @@ CLI_CONFIG="$USERPROFILE/.claude.json"
 EXT_CONFIG="$USERPROFILE/.claude/mcp.json"
 CURSOR_CONFIG="$USERPROFILE/.cursor/mcp.json"
 
+PYTHON=$(command -v python3 2>/dev/null || command -v python 2>/dev/null || echo "python3")
+
 extract_servers() {
   local file="$1"
   if [ ! -f "$file" ]; then
     echo "(file missing)"
     return
   fi
-  python3 -c "
+  $PYTHON -c "
 import json, sys
 try:
     with open('$file') as f:

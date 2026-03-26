@@ -6,6 +6,8 @@
 # Configure: Set SESSION_FILE to your memory system's session file path.
 #            Set WORKSPACE_CONTEXT to describe your workspace layout.
 
+PYTHON=$(command -v python3 2>/dev/null || command -v python 2>/dev/null || echo "python3")
+
 # Path to your session memory file (set to your memory repo path)
 SESSION_FILE="${MEMORYCORE_PATH:-$HOME/memory-core}/core/session.md"
 CHECKPOINT_FILE="$HOME/.claude/session-checkpoint.txt"
@@ -26,7 +28,7 @@ fi
 # Configure: Describe your workspace layout and critical rules here
 WORKSPACE_CONTEXT="Active workspace: $(pwd). Always verify after completing work: run tests, check types, hit live endpoints."
 
-python -c "
+$PYTHON -c "
 import os, json
 stale = os.environ.get('STALE_WARNING', '')
 prefix = (stale + ' ') if stale else ''

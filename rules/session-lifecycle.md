@@ -6,6 +6,8 @@
   The hook and rule are safety nets; the skill is the full restoration.
 -->
 
+> **Before using:** Replace `{MEMORYCORE_PATH}` and `{CLAUDE_CONFIG_PATH}` with your actual paths in your copy of this rule.
+
 # Session Lifecycle — Automatic Behaviors
 
 These rules apply to EVERY session, regardless of project.
