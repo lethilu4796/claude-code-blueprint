@@ -25,3 +25,41 @@
 ## Customization
 
 Most skills reference `CLAUDE.md` and `{MEMORYCORE_PATH}` as configuration sources. Replace these tokens with your actual paths when adopting.
+
+## Extending Skills for Your Stack
+
+Skills are designed to be generic, but you'll get more value by adding stack-specific checks. Here are examples of what to add — adapt these for YOUR stack's failure modes.
+
+### review skill — Add ORM query check
+
+In `review/SKILL.md`, add to the code review checklist:
+
+```
+- Check for N+1 queries: any loop that calls a database query (e.g., findMany inside a map/forEach) should use eager loading or a batch query instead
+```
+
+### deploy-check skill — Add ORM pre-build step
+
+In `deploy-check/SKILL.md`, add to the pre-deployment validation:
+
+```
+- Verify ORM client is generated: run the ORM's generate/build command (e.g., `prisma generate`, `drizzle-kit generate`) and confirm it succeeds before building the application
+```
+
+### test-check skill — Add coverage threshold
+
+In `test-check/SKILL.md`, add to the test validation steps:
+
+```
+- Check coverage meets project threshold: run tests with coverage flag and verify the output meets the minimum set in CLAUDE.md (e.g., 80% line coverage). Flag any drop from the previous baseline.
+```
+
+### db-check skill — Add migration drift detection
+
+In `db-check/SKILL.md`, add to the schema validation:
+
+```
+- Check for migration drift: compare the current database state against the ORM's schema definition. If the ORM supports it (e.g., `prisma migrate diff`, `drizzle-kit check`), run the diff and report any untracked changes.
+```
+
+> These are examples, not prescriptions. Add checks for YOUR stack's failure modes — the ones that have actually burned you.

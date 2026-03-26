@@ -67,7 +67,8 @@ diary/
 projects/
   └── active/           — Per-project context files (max ~10)
 templates/
-  └── coding-template.md — Template for new project entries
+  ├── adr-template.md     — Reusable ADR template for architectural decisions
+  └── coding-template.md  — Template for new project entries
 ```
 
 ## How It Works

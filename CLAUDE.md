@@ -115,6 +115,20 @@ After checks 1-6 pass, spawn a `code-reviewer` Task subagent with this prompt st
 
 The subagent sees the plan cold (different context window = different attention patterns). This catches design blind spots that self-review in the same context cannot. Run this on every plan for consistent output quality.
 
+## Stack Rules (customize for your project)
+
+<!-- Add your project's framework-specific rules below. These complement the behavioral rules above
+     with concrete conventions for your tech stack. Replace the examples with your own. -->
+
+<!-- Example rules (delete these and add your own):
+
+- Use [your framework]'s recommended project structure — don't invent custom layouts
+- Use a singleton ORM/database client — never instantiate a new connection per request in serverless environments
+- Soft delete only — never hard DELETE records. Set `is_active = false` and `deleted_at = now()`
+- All API responses follow the project's envelope format: `{ data, error, meta }`
+
+See PRESETS.md > "Stack Rule Templates" for more examples organized by project type. -->
+
 ## Compact Instructions
 
 When auto-compacting or manually compacting this conversation, preserve:

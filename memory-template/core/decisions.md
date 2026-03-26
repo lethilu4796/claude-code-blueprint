@@ -32,3 +32,5 @@
 - Bun test — rejected because team isn't on Bun yet
 
 -->
+
+<!-- Full ADR template available at: templates/adr-template.md -->

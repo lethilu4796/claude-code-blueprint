@@ -431,9 +431,11 @@ Once you're comfortable with the basics:
 3. **Hooks deep dive** — Read [hooks/README.md](hooks/README.md) for the full lifecycle and design principles
 4. **Settings deep dive** — Read [SETTINGS-GUIDE.md](SETTINGS-GUIDE.md) for every env var, permission, and cost implication explained
 5. **Memory system** — Read [memory-template/README.md](memory-template/README.md) when you need cross-session persistence
-6. **Architecture** — Read [ARCHITECTURE.md](ARCHITECTURE.md) for how everything connects
-7. **Cross-tool** — Read [CROSS-TOOL-GUIDE.md](CROSS-TOOL-GUIDE.md) if you also use Cursor, Codex, or Gemini
-8. **Troubleshooting** — Read [TROUBLESHOOTING.md](TROUBLESHOOTING.md) if something isn't working as expected
+6. **ADR template** — Use [memory-template/templates/adr-template.md](memory-template/templates/adr-template.md) when documenting architectural decisions
+7. **Architecture** — Read [ARCHITECTURE.md](ARCHITECTURE.md) for how everything connects
+8. **Stack rule templates** — See [PRESETS.md](PRESETS.md#stack-rule-templates) for framework-agnostic CLAUDE.md snippets by project type
+9. **Cross-tool** — Read [CROSS-TOOL-GUIDE.md](CROSS-TOOL-GUIDE.md) if you also use Cursor, Codex, or Gemini
+10. **Troubleshooting** — Read [TROUBLESHOOTING.md](TROUBLESHOOTING.md) if something isn't working as expected
 
 ---
 

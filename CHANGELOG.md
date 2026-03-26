@@ -9,6 +9,18 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 ## 2026-03-26
 
 ### Added
+- ADR template ([memory-template/templates/adr-template.md](memory-template/templates/adr-template.md)) for structured architectural decision records
+- Category-based stack rule templates in [PRESETS.md](PRESETS.md#stack-rule-templates) (Backend API, Full-Stack App, Database + ORM)
+- Skill customization guide in [skills/README.md](skills/README.md#extending-skills-for-your-stack) with 4 extension examples
+- Stack rules placeholder section in [CLAUDE.md](CLAUDE.md) template for project-specific framework rules
+- ADR template and stack rule templates references in [GETTING-STARTED.md](GETTING-STARTED.md#what-to-learn-next)
+
+### Fixed
+- Python interpreter portability across 6 hook scripts (now auto-detects `python3` or `python`)
+- Token substitution guidance added to [init-project](skills/init-project/SKILL.md) skill and [session-lifecycle](rules/session-lifecycle.md) rule
+- Testing rule template now framework-agnostic (was Vitest/Vue-specific)
+
+### Previously added
 - Auto permission mode documentation with comparison table of all 4 modes ([SETTINGS-GUIDE.md](SETTINGS-GUIDE.md#defaultmode))
 - `autoMode.environment` configuration guide for classifier context
 - `CLAUDE_CODE_SUBPROCESS_ENV_SCRUB` environment variable documentation
