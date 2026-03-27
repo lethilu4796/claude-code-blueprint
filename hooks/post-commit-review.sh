@@ -3,7 +3,11 @@
 # Only triggers on actual git commit commands, not amend/help/dry-run.
 # Pattern: same stdin JSON parsing as notify-file-changed.sh
 
-PYTHON=$(command -v python3 2>/dev/null || command -v python 2>/dev/null || echo "python3")
+PYTHON=$(command -v python3 2>/dev/null || command -v python 2>/dev/null)
+if [ -z "$PYTHON" ]; then
+  echo "post-commit-review: python not found -- hook cannot parse input" >&2
+  exit 0
+fi
 
 INPUT=$(cat)
 COMMAND=$(echo "$INPUT" | $PYTHON -c "
@@ -57,17 +61,27 @@ else
   FILE_LIST="$CHANGED_FILES"
 fi
 
-# Escape strings for JSON output
-FILE_LIST_ESCAPED=$(echo "$FILE_LIST" | $PYTHON -c "
-import sys, json
-print(json.dumps(sys.stdin.read().strip())[1:-1])
-" 2>/dev/null)
+# Build JSON output entirely in Python to avoid shell-to-JSON escaping issues
+export HOOK_FILE_LIST="$FILE_LIST"
+export HOOK_COMMIT_MSG="$COMMIT_MSG"
+export HOOK_HIGH_RISK="$HIGH_RISK"
+export HOOK_FILE_COUNT="$FILE_COUNT"
 
-COMMIT_ESCAPED=$(echo "$COMMIT_MSG" | $PYTHON -c "
-import sys, json
-print(json.dumps(sys.stdin.read().strip())[1:-1])
-" 2>/dev/null)
+$PYTHON -c "
+import os, json
+file_list = os.environ.get('HOOK_FILE_LIST', '')
+commit_msg = os.environ.get('HOOK_COMMIT_MSG', '')
+high_risk = os.environ.get('HOOK_HIGH_RISK', '')
+file_count = os.environ.get('HOOK_FILE_COUNT', '0')
 
-echo "{\"systemMessage\": \"POST-COMMIT REVIEW REMINDER: Commit created: $COMMIT_ESCAPED ($FILE_COUNT files changed).${HIGH_RISK} Changed files:\\n$FILE_LIST_ESCAPED\\n\\nConsider running /review-diff for quick anti-pattern scan or /review for comprehensive analysis.\"}"
+msg = (
+    'POST-COMMIT REVIEW REMINDER: '
+    'Commit created: ' + commit_msg + ' (' + file_count + ' files changed).'
+    + high_risk
+    + ' Changed files:\n' + file_list
+    + '\n\nConsider running a diff scan or comprehensive review.'
+)
+print(json.dumps({'systemMessage': msg}))
+" 2>/dev/null
 
 exit 0

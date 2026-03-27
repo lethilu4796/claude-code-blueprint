@@ -22,9 +22,26 @@
 3. **GO/NO-GO verdicts** — Review and deploy skills end with clear pass/fail decisions
 4. **Multi-agent orchestration** — The review skill spawns code-reviewer + security-reviewer + db-analyst in parallel
 
-## Customization
+## Required: Replace Placeholder Variables
 
-Most skills reference `CLAUDE.md` and `{MEMORYCORE_PATH}` as configuration sources. Replace these tokens with your actual paths when adopting.
+Before using skills that reference external paths, you **must** replace these placeholders in your copy:
+
+| Variable | Replace With | Example (macOS/Linux) | Example (Windows) |
+|----------|-------------|----------------------|-------------------|
+| `{MEMORYCORE_PATH}` | Path to your memory repo | `~/memory-core` | `C:/Users/you/memory-core` |
+| `{CLAUDE_CONFIG_PATH}` | Path to your Claude config | `~/.claude` | `C:/Users/you/.claude` |
+| `{PROJECTS_ROOT}` | Path to your projects directory | `~/projects` | `C:/Users/you/projects` |
+| `{MEMORY_MD_PATH}` | Path to your auto-memory MEMORY.md | `~/.claude/projects/*/memory/MEMORY.md` | `C:/Users/you/.claude/projects/*/memory/MEMORY.md` |
+| `{BOILERPLATE_NAME}` | Name of your boilerplate template directory | `nuxt-boilerplate` | `nuxt-boilerplate` |
+| `{USER_NAME}` | Your name (used in skill descriptions) | `Jane` | `Jane` |
+
+**Skills that need replacement:** load-session, save-session, session-end, save-diary, register-project, init-project
+
+**How to check:** Search your skills directory for unreplaced variables:
+```bash
+grep -r '{MEMORYCORE_PATH}\|{CLAUDE_CONFIG_PATH}\|{PROJECTS_ROOT}\|{MEMORY_MD_PATH}\|{BOILERPLATE_NAME}\|{USER_NAME}' ~/.claude/skills/
+```
+If you see results with curly braces still present, those variables haven't been replaced yet. Claude will try to read literal paths containing `{MEMORYCORE_PATH}`, which fails with a "file not found" error.
 
 ## Extending Skills for Your Stack
 

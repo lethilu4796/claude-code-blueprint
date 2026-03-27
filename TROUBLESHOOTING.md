@@ -228,16 +228,17 @@ See [SETTINGS-GUIDE.md](SETTINGS-GUIDE.md#cost-implications) for the full cost b
 
 See [GETTING-STARTED.md](GETTING-STARTED.md#windows-notes) for the full Windows setup guide.
 
-### "python3: command not found"
+### "python: command not found" or "python3: command not found"
 
-**Symptoms:** Some hook scripts fail on Windows because they invoke `python3`, which doesn't exist on Windows (the command is `python`).
+**Symptoms:** Hook scripts fail because Python isn't found on PATH.
 
-**Affected hooks:** `protect-config.sh`, `cost-tracker.sh`, `verify-mcp-sync.sh` -- these use `python3`. Other hooks use `python`.
+**Background:** All hooks auto-detect Python using `command -v python3 || command -v python`. You need either `python3` or `python` on your PATH -- not both. If neither is found, hooks print a warning to stderr and exit cleanly (no blocking).
 
-**Fixes (choose one):**
-1. **Edit the scripts** to replace `python3` with `python`
-2. **Create an alias** in Git Bash: add `alias python3=python` to `~/.bashrc`
-3. **Install Python via py launcher**: `py -3` works on Windows if Python was installed from python.org
+**Fixes:**
+1. **Windows:** Install Python: `winget install Python.Python.3` or download from [python.org](https://python.org). The installer adds `python` to PATH.
+2. **macOS:** Python 3 is typically pre-installed as `python3`. If not: `brew install python`
+3. **Linux:** Install via your package manager: `sudo apt install python3` (Debian/Ubuntu) or `sudo dnf install python3` (Fedora)
+4. **Verify:** Run `python --version` or `python3 --version` to confirm
 
 ### "Permission denied" on hook scripts
 
@@ -254,6 +255,104 @@ See [GETTING-STARTED.md](GETTING-STARTED.md#windows-notes) for the full Windows 
 **Fix:** Tilde (`~`) expansion depends on the shell. In Git Bash, `~` expands to `/c/Users/YourUser`. If hooks aren't found:
 1. Try an absolute path: `"command": "bash \"/c/Users/YourUser/.claude/hooks/script.sh\""`
 2. Or use the `$HOME` variable: `"command": "bash \"$HOME/.claude/hooks/script.sh\""`
+
+---
+
+## Skills and Memory
+
+### "Skills show 'file not found' for {MEMORYCORE_PATH}"
+
+**Symptoms:** A skill like load-session or save-session fails with an error about a path containing literal curly braces, e.g., `{MEMORYCORE_PATH}/core/session.md not found`.
+
+**Cause:** Placeholder variables in skill files haven't been replaced with your actual paths.
+
+**Fix:** Search your skills directory for unreplaced variables:
+
+```bash
+grep -r '{MEMORYCORE_PATH}' ~/.claude/skills/
+grep -r '{CLAUDE_CONFIG_PATH}' ~/.claude/skills/
+grep -r '{PROJECTS_ROOT}' ~/.claude/skills/
+```
+
+Replace each placeholder with your actual path. See [skills/README.md](skills/README.md#required-replace-placeholder-variables) for the full list and platform-specific examples.
+
+---
+
+## Agents (continued)
+
+### "Agent generates analysis but won't modify files"
+
+**Symptoms:** You asked an agent to fix something, but it only analyzes and reports -- it never actually edits files or runs commands.
+
+**Cause:** The agent has `permissionMode: plan` in its frontmatter, which restricts it to read-only tools (Read, Grep, Glob).
+
+**These agents are read-only by design:**
+- `verify-plan` — plan verification (read-only)
+- `db-analyst` — database schema analysis
+- `devops-engineer` — infrastructure review
+- `api-documenter` — API documentation generation
+
+**Fix:** If you need code changes, use an agent with write access (e.g., `backend-specialist`, `frontend-specialist`, `qa-tester`). If you want to give a read-only agent write access, change `permissionMode: plan` to remove it in your copy of the agent file -- but be aware this removes a safety guardrail.
+
+### "Agent stopped before finishing"
+
+**Symptoms:** An agent was mid-task and suddenly stopped. No error message, just incomplete work.
+
+**Cause:** The agent hit its `maxTurns` limit. Each agent has a maximum number of turns (tool calls + responses) defined in its frontmatter. When reached, the agent stops gracefully.
+
+**Fix:**
+1. Check what was completed: `git diff` to see changes made, `git status` for uncommitted work
+2. To continue: spawn a new agent of the same type with a prompt like "Continue the work from the previous agent. Here's what was already done: [summary]"
+3. Or continue manually in the main session
+
+See [agents/README.md](agents/README.md#what-happens-when-maxturns-is-reached) for each agent's maxTurns value.
+
+---
+
+## Configuration
+
+### "Config was created in project directory instead of ~/.claude/"
+
+**Symptoms:** After asking Claude to set up the blueprint, you find hooks, settings, or permissions were written to `.claude/` in your project directory instead of `~/.claude/` (your home directory).
+
+**Why this matters:** Project-level config (`.claude/`) is shared with your team via git. Personal hooks, permissions, and settings should be in `~/.claude/` so they don't affect teammates.
+
+**Fix:**
+1. Check what was created: `ls -la .claude/` in your project
+2. Move personal files to user-level:
+   ```bash
+   # Move hooks (if any were created in project)
+   mv .claude/hooks/* ~/.claude/hooks/ 2>/dev/null
+   # Move settings (merge manually -- don't overwrite)
+   # Compare .claude/settings.json with ~/.claude/settings.json
+   ```
+3. Remove the project-level files that should be personal: `rm -rf .claude/hooks/ .claude/settings.json`
+4. Keep only shared config in `.claude/`: agents, skills, and rules that the whole team should use
+
+**Prevention:** When asking Claude to set up the blueprint, always specify: "Install hooks and settings in my user-level config at `~/.claude/`, not in the project directory." See [GETTING-STARTED.md](GETTING-STARTED.md#where-config-belongs-project-vs-personal) for the full placement guide.
+
+### "Hooks work on Mac but not Windows"
+
+**Symptoms:** Hook scripts that work on macOS or Linux fail silently or produce errors on Windows.
+
+**5-Point Checklist:**
+
+1. **Bash is installed:** Hooks require bash. Install [Git for Windows](https://git-scm.com/download/win) which includes Git Bash. Verify: `bash --version`
+
+2. **Line endings are LF:** Hook scripts must use LF (Unix) line endings, not CRLF (Windows). Check with `file hooks/*.sh` -- look for "CRLF" in the output. Fix with:
+   ```bash
+   git config --global core.autocrlf input
+   ```
+   Or add `*.sh text eol=lf` to your `.gitattributes`.
+
+3. **Python is on PATH:** Run `python --version` or `python3 --version`. If neither works, install Python: `winget install Python.Python.3`
+
+4. **Path format:** In `settings.json`, use forward slashes or tilde for hook paths:
+   - Works: `bash "~/.claude/hooks/protect-config.sh"`
+   - Works: `bash "/c/Users/YourUser/.claude/hooks/protect-config.sh"`
+   - Fails: `bash "C:\Users\YourUser\.claude\hooks\protect-config.sh"`
+
+5. **Tilde expansion:** If `~` doesn't resolve, use an absolute path with forward slashes: `bash "/c/Users/YourUser/.claude/hooks/script.sh"`
 
 ---
 

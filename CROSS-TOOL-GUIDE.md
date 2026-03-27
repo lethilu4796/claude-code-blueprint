@@ -4,13 +4,13 @@ While this blueprint is built for Claude Code, the **principles are universal**.
 
 ## Quick Reference: Config File Locations
 
-| Tool | Behavioral Rules | Main Config | Custom Agents | MCP Config |
-|------|-----------------|-------------|---------------|------------|
-| **Claude Code** | `CLAUDE.md` | `~/.claude/settings.json` | `.claude/agents/*.md` | `.claude.json` or settings |
-| **Cursor** | `.cursor/rules/*.mdc` | `.cursor/` directory | `.cursor/agents/*.md` | In Cursor settings |
-| **Codex CLI** | `AGENTS.md` | `~/.codex/config.toml` | Via Agents SDK | In `config.toml` |
-| **Gemini CLI** | `GEMINI.md` | `~/.gemini/settings.json` | Subagent configs | In `settings.json` |
-| **Windsurf** | `.windsurf/rules/*.md` + `AGENTS.md` | `~/.codeium/windsurf/` | Not supported | `mcp_config.json` |
+| Tool | Behavioral Rules | Main Config | User Config Directory | Custom Agents | MCP Config |
+|------|-----------------|-------------|----------------------|---------------|------------|
+| **Claude Code** | `CLAUDE.md` | `~/.claude/settings.json` | `~/.claude/` | `.claude/agents/*.md` | `.claude.json` or settings |
+| **Cursor** | `.cursor/rules/*.mdc` | `.cursor/` directory | `~/.cursor/` | `.cursor/agents/*.md` | In Cursor settings |
+| **Codex CLI** | `AGENTS.md` | `~/.codex/config.toml` | `~/.codex/` | Via Agents SDK | In `config.toml` |
+| **Gemini CLI** | `GEMINI.md` | `~/.gemini/settings.json` | `~/.gemini/` | Subagent configs | In `settings.json` |
+| **Windsurf** | `.windsurf/rules/*.md` + `AGENTS.md` | `~/.codeium/windsurf/` | `~/.codeium/windsurf/` | Not supported | `mcp_config.json` |
 
 ---
 

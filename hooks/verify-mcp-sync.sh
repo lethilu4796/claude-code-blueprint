@@ -9,7 +9,11 @@ CLI_CONFIG="$USERPROFILE/.claude.json"
 EXT_CONFIG="$USERPROFILE/.claude/mcp.json"
 CURSOR_CONFIG="$USERPROFILE/.cursor/mcp.json"
 
-PYTHON=$(command -v python3 2>/dev/null || command -v python 2>/dev/null || echo "python3")
+PYTHON=$(command -v python3 2>/dev/null || command -v python 2>/dev/null)
+if [ -z "$PYTHON" ]; then
+  echo "verify-mcp-sync: python not found" >&2
+  exit 0
+fi
 
 extract_servers() {
   local file="$1"
@@ -17,10 +21,11 @@ extract_servers() {
     echo "(file missing)"
     return
   fi
-  $PYTHON -c "
-import json, sys
+  HOOK_MCP_FILE="$file" $PYTHON -c "
+import os, json
 try:
-    with open('$file') as f:
+    filepath = os.environ.get('HOOK_MCP_FILE', '')
+    with open(filepath) as f:
         d = json.load(f)
     servers = d.get('mcpServers', {})
     print(','.join(sorted(servers.keys())) if servers else '(none)')

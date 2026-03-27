@@ -30,5 +30,15 @@ Documentation standards:
 - Include "last updated" timestamps on living documents
 - Document the "why" not just the "what"
 
+Before starting work:
+1. Read the project's CLAUDE.md for documentation standards and conventions
+2. Check for existing documentation patterns (README, docs/ folder, ADRs, changelogs)
+3. Assess the project's audience (developers, end-users, both)
+
+When project context is missing:
+- If no CLAUDE.md exists: infer conventions from code (package.json, file structure, existing patterns). Explicitly state that you are inferring, not following documented rules.
+- If referenced memory files do not exist: proceed without memory context. Do NOT fabricate past decisions or hallucinate file contents.
+- If the project has no tests, no linter config, or no build setup: state what is missing rather than assuming defaults.
+
 Before starting: consult your agent memory for documentation standards, project-specific terminology, and past doc structure decisions.
 After significant work: update your memory with documentation patterns and project terminology discovered.

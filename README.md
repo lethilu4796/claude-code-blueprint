@@ -18,6 +18,12 @@ This repository documents a production Claude Code setup built over numerous ses
 
 **New to Claude Code?** Start with [GETTING-STARTED.md](GETTING-STARTED.md) — a beginner-friendly walkthrough covering the CLI, MCP servers, plugins, and your first 30 minutes.
 
+### Before You Start
+
+> **Important:** This is a reference architecture, not a project template. Do **not** run Claude Code inside this repository -- it will read the blueprint's own CLAUDE.md instead of your project's rules. Fork or cherry-pick files into your own project.
+>
+> Several files contain placeholder variables (`{MEMORYCORE_PATH}`, `{PROJECTS_ROOT}`) that you must replace with your actual paths. Hooks and settings belong in your **user-level** config (`~/.claude/`), not in your project directory. See [GETTING-STARTED.md](GETTING-STARTED.md) for the full setup guide.
+
 ## What's Inside
 
 | Component | Count | Purpose |

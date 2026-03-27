@@ -3,7 +3,8 @@
 # Runs in the background — Claude sees the systemMessage on the next turn.
 # Only triggers for source files (.js, .ts, .vue, .py, .prisma), not docs/config.
 
-PYTHON=$(command -v python3 2>/dev/null || command -v python 2>/dev/null || echo "python3")
+PYTHON=$(command -v python3 2>/dev/null || command -v python 2>/dev/null)
+if [ -z "$PYTHON" ]; then exit 0; fi
 
 INPUT=$(cat)
 FILE_PATH=$(echo "$INPUT" | $PYTHON -c "

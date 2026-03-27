@@ -198,7 +198,7 @@ The `allow` list in the template is organized by category. Here's what each allo
 
 | Category | What It Allows | Why |
 |----------|---------------|-----|
-| **Git Operations** | `git status`, `git diff`, `git log`, `git add`, `git commit`, etc. | Core development workflow. Note: `git push` is intentionally allowed here but blocked by the `block-git-push.sh` hook -- defense in depth. |
+| **Git Operations** | `git status`, `git diff`, `git log`, `git add`, `git commit`, etc. | Core development workflow. Note: `git push` is intentionally absent from the allow list. The `block-git-push.sh` hook provides additional domain-level protection. |
 | **Package Managers** | `npm`, `npx`, `yarn`, `pnpm`, `pip`, `pip3`, `uv`, `composer` | Installing dependencies, running scripts, executing tools. |
 | **Runtimes** | `node`, `python`, `python3`, `java` | Running scripts and REPL commands for debugging. |
 | **Testing + Linting** | `pytest`, `mypy`, `ruff`, `./node_modules/.bin/*` | Running test suites and linters without permission prompts. |
@@ -210,6 +210,9 @@ The `allow` list in the template is organized by category. Here's what each allo
 
 ### additionalDirectories
 
+Claude Code can only read/write files in the current working directory by default. This setting grants access to additional paths -- typically your `~/.claude/` directory so Claude can read/edit hooks, agents, skills, and plan files.
+
+**Windows:**
 ```json
 "additionalDirectories": [
   "C:\\Users\\YourUser\\.claude",
@@ -219,9 +222,29 @@ The `allow` list in the template is organized by category. Here's what each allo
 ]
 ```
 
-Claude Code can only read/write files in the current working directory by default. This setting grants access to additional paths -- typically your `~/.claude/` directory so Claude can read/edit hooks, agents, skills, and plan files.
+**macOS:**
+```json
+"additionalDirectories": [
+  "/Users/youruser/.claude",
+  "/Users/youruser/.claude/skills",
+  "/Users/youruser/.claude/plans",
+  "/Users/youruser/.claude/agents"
+]
+```
 
-**Replace `YourUser`** with your actual username. On macOS/Linux, use `/home/youruser/.claude` or `/Users/youruser/.claude`.
+**Linux:**
+```json
+"additionalDirectories": [
+  "/home/youruser/.claude",
+  "/home/youruser/.claude/skills",
+  "/home/youruser/.claude/plans",
+  "/home/youruser/.claude/agents"
+]
+```
+
+Replace `YourUser` (Windows) or `youruser` (macOS/Linux) with your actual username.
+
+> **macOS/Linux note:** Tilde expansion (`~/.claude`) is NOT supported in `additionalDirectories` -- use full absolute paths.
 
 ---
 

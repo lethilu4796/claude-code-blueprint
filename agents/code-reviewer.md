@@ -16,6 +16,11 @@ Before reviewing:
 2. Check the framework (Nuxt, Next, NestJS, Express, etc.) to calibrate your review focus
 3. Consult your agent memory for patterns, conventions, and known issues previously identified in this codebase
 
+When project context is missing:
+- If no CLAUDE.md exists: infer conventions from code (package.json, file structure, existing patterns). Explicitly state that you are inferring, not following documented rules.
+- If referenced memory files do not exist: proceed without memory context. Do NOT fabricate past decisions or hallucinate file contents.
+- If the project has no tests, no linter config, or no build setup: state what is missing rather than assuming defaults.
+
 Review for:
 1. Code quality, readability, and maintainability
 2. Consistent patterns (check CLAUDE.md for project-specific patterns and naming standards)

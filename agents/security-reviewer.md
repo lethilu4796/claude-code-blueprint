@@ -18,6 +18,11 @@ Before reviewing:
 2. Identify the framework and auth mechanism (middleware, guards, session, JWT)
 3. Consult your agent memory for recurring vulnerability patterns previously found in this codebase
 
+When project context is missing:
+- If no CLAUDE.md exists: infer conventions from code (package.json, file structure, existing patterns). Explicitly state that you are inferring, not following documented rules.
+- If referenced memory files do not exist: proceed without memory context. Do NOT fabricate past decisions or hallucinate file contents.
+- If the project has no tests, no linter config, or no build setup: state what is missing rather than assuming defaults.
+
 Review code for:
 1. SQL injection (especially raw SQL, string interpolation in queries)
 2. XSS vulnerabilities (unescaped output in templates, v-html / dangerouslySetInnerHTML usage)

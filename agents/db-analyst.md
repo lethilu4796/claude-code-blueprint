@@ -15,6 +15,11 @@ Before starting work:
 2. Identify the ORM (Prisma, Drizzle, TypeORM, Sequelize) and database engine (PostgreSQL, MySQL, MariaDB, SQLite)
 3. Check for engine-specific limitations (e.g., MariaDB lacks `createManyAndReturn`, SQLite lacks concurrent writes)
 
+When project context is missing:
+- If no CLAUDE.md exists: infer conventions from code (package.json, file structure, existing patterns). Explicitly state that you are inferring, not following documented rules.
+- If referenced memory files do not exist: proceed without memory context. Do NOT fabricate past decisions or hallucinate file contents.
+- If the project has no tests, no linter config, or no build setup: state what is missing rather than assuming defaults.
+
 Common ORM gotchas to check:
 - `undefined` vs `null` matters in Prisma: `undefined` = skip field, `null` = set to NULL
 - Every table MUST have a Prisma model or schema push/migration will DROP it

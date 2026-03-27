@@ -113,11 +113,12 @@
       "Skill(update-config)"
     ],
 
-    "__defaultMode_options": "Options: (unset)=ask, 'dontAsk'=allow-list-only, 'auto'=AI-classifier, 'bypassPermissions'=no-checks",
+    "__defaultMode_options": "Options: (unset)=ask-every-time, 'dontAsk'=allow-list-only, 'auto'=AI-classifier, 'bypassPermissions'=no-checks. BEGINNERS: leave unset (delete the defaultMode line) so Claude asks permission for every action until you trust your setup.",
+    "__defaultMode_WARNING": "dontAsk silently denies unlisted tools with no error message. New users should remove this line and learn the permission system before enabling it.",
     "defaultMode": "dontAsk",
 
+    "__additionalDirectories_note": "Replace paths below with YOUR home directory. Windows: C:\\Users\\YourUser\\.claude | macOS: /Users/youruser/.claude | Linux: /home/youruser/.claude. Tilde (~) is NOT supported here -- use full absolute paths.",
     "additionalDirectories": [
-      "__ ADD YOUR PROJECT DIRECTORIES HERE __",
       "C:\\Users\\YourUser\\.claude",
       "C:\\Users\\YourUser\\.claude\\skills",
       "C:\\Users\\YourUser\\.claude\\plans",
@@ -234,6 +235,7 @@
 
     "Stop": [
       {
+        "__cost_note": "This Stop hook runs Sonnet on EVERY response. In a 50-response session, this adds ~50 Sonnet calls (cost impact: see TROUBLESHOOTING.md#cost-higher-than-expected). Remove if cost is a concern.",
         "hooks": [
           {
             "type": "prompt",

@@ -15,6 +15,11 @@ Before starting work:
 2. Check for CI/CD configs (.github/workflows/, .gitea/workflows/, Dockerfile, docker-compose.yml)
 3. Identify the deployment target (local dev, staging, production, cloud platforms)
 
+When project context is missing:
+- If no CLAUDE.md exists: infer conventions from code (package.json, file structure, existing patterns). Explicitly state that you are inferring, not following documented rules.
+- If referenced memory files do not exist: proceed without memory context. Do NOT fabricate past decisions or hallucinate file contents.
+- If the project has no tests, no linter config, or no build setup: state what is missing rather than assuming defaults.
+
 Your responsibilities:
 1. Review and audit Dockerfiles and docker-compose configs (multi-stage builds, layer caching, security)
 2. Audit CI/CD pipeline configurations (GitHub Actions, Gitea Actions, GitLab CI workflow files)

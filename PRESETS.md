@@ -54,7 +54,7 @@ Add to your `~/.claude/settings.json`:
 }
 ```
 
-Replace `YourUser` with your actual username. On macOS/Linux, use `/home/youruser/.claude/hooks/`.
+**macOS/Linux:** Replace `C:/Users/YourUser/` with `/Users/youruser/` (macOS) or `/home/youruser/` (Linux).
 
 ### What you get
 
@@ -92,7 +92,7 @@ Replace `YourUser` with your actual username. On macOS/Linux, use `/home/youruse
 
 Use the full [`settings-template.json`](examples/settings-template.json) as your base. Customize:
 
-1. Replace all `YourUser` paths with your actual username
+1. Replace all `YourUser` paths with your actual username (Windows: `C:/Users/YourUser/`, macOS: `/Users/youruser/`, Linux: `/home/youruser/`)
 2. Adjust the `allow` list for your stack (remove tools you don't use)
 3. Edit `block-git-push.sh` to match your protected remote URLs
 4. Review hook paths -- ensure they match your OS (forward slashes on all platforms)
@@ -176,6 +176,8 @@ Use the full [`settings-template.json`](examples/settings-template.json) as your
   }
 }
 ```
+
+**macOS/Linux:** Replace `bash "hooks/block-git-push.sh"` with absolute paths, e.g., `bash "/Users/youruser/.claude/hooks/block-git-push.sh"`.
 
 ### Why `dontAsk` and not `auto` for CI/CD
 

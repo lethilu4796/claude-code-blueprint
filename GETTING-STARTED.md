@@ -79,6 +79,8 @@ You'll see `~/.claude/` referenced throughout this guide. This is Claude Code's 
 
 If this folder doesn't exist yet, that's normal — Claude Code creates it the first time you run it. You can also create it manually.
 
+> **Windows users:** If hooks or paths aren't working as expected, jump to [Windows Notes](#windows-notes) for platform-specific guidance before continuing.
+
 Inside `~/.claude/` you'll find (or create):
 - `settings.json` — Claude Code's main configuration (hooks, permissions, environment variables)
 - `hooks/` — Shell scripts that run automatically on specific events
@@ -97,12 +99,13 @@ If you don't have one yet, that's normal — Claude Code works fine without it. 
 Here's a shortcut — you can ask Claude Code to configure itself. Paste this prompt into a Claude Code session:
 
 ```
-I want to set up the Claude Code Blueprint from github.com/faizkhairi/claude-code-blueprint.
+I want to set up the Claude Code Blueprint from this repository.
 Please help me:
-1. Copy the CLAUDE.md behavioral rules into my current project
-2. Set up the protect-config hook so you can't weaken my linter/build settings
-3. Set up the cost-tracker hook so I can see how much each session costs
+1. Copy the CLAUDE.md behavioral rules into my current project root (this is the only project-level file)
+2. Set up hooks in my USER-LEVEL config at ~/.claude/hooks/ (NOT in the project directory)
+3. Set up permissions in ~/.claude/settings.json (NOT in .claude/settings.json in the project)
 Show me what you're doing at each step so I can learn.
+IMPORTANT: Do NOT modify any project-level .claude/ directory. All hooks, permissions, and personal settings belong in ~/.claude/ (your home directory).
 ```
 
 Claude Code will walk you through the setup interactively — creating files, explaining what each one does, and wiring everything together.
@@ -128,6 +131,10 @@ For perspective: a typical 30-turn coding session uses 50,000-200,000+ tokens. T
 **Budget-conscious?** Hooks give the most value per token spent (literally free). CLAUDE.md is the second-best ROI. Agents are the most expensive — add them one at a time, starting with `verify-plan`.
 
 See [BENCHMARKS.md](BENCHMARKS.md#token-cost-per-component) for the complete breakdown, including subscription plan recommendations and an upgrade guide.
+
+### Important: Placeholder Variables
+
+Several files in this blueprint contain placeholder variables like `{MEMORYCORE_PATH}`, `{PROJECTS_ROOT}`, and `{CLAUDE_CONFIG_PATH}`. You must replace these with your actual paths before use. See [skills/README.md](skills/README.md#required-replace-placeholder-variables) for the full list and platform-specific examples.
 
 ### Ready for More?
 
@@ -506,12 +513,57 @@ Or add a `.gitattributes` file to force LF for hooks:
 
 | Tool | Used By | Install on Windows |
 |------|---------|-------------------|
-| `jq` | `cost-tracker.sh`, `precompact-state.sh` | `winget install jqlang.jq` or `choco install jq` |
-| `python` | Most hook scripts | `winget install Python.Python.3` or [python.org](https://python.org) |
+| `python` | All hook scripts (JSON parsing) | `winget install Python.Python.3` or [python.org](https://python.org) |
 
-**Note on `python3` vs `python`:** Three hooks in this blueprint use `python3` (`protect-config.sh`, `cost-tracker.sh`, `verify-mcp-sync.sh`), while others use `python`. On Windows, the command is typically `python`, not `python3`. Fix by editing the scripts to use `python`, or add `alias python3=python` to your `~/.bashrc` in Git Bash.
+All hooks auto-detect Python using `command -v python3 || command -v python`. You need either `python3` or `python` on your PATH -- not both. If neither is found, hooks print a warning and exit cleanly (no blocking).
+
+On Windows, `python` is the typical command name. On macOS/Linux, `python3` is standard. The hooks handle both automatically -- no aliasing or script editing needed.
+
+### Common Edge Cases
+
+- **Spaces in username:** If your Windows username contains spaces (e.g., `C:\Users\John Doe\.claude\`), ensure all paths in `settings.json` are wrapped in double quotes. Hook scripts already quote `$HOME` expansions, so they handle this automatically.
+- **Do not use this repo as your project:** Running `cd claude-code-blueprint && claude` will cause Claude to read this blueprint's own CLAUDE.md (which has meta-instructions about the blueprint itself). Always fork or copy files into your own project.
 
 For more Windows-specific issues, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md#windows-specific).
+
+---
+
+## Where Config Belongs (Project vs Personal)
+
+Before setting up, understand what goes where. This prevents mistakes like committing personal API keys or modifying shared team configs.
+
+### Config Placement Table
+
+| Config Type | Project-Level (`.claude/`) | User-Level (`~/.claude/`) | Rule of Thumb |
+|-------------|---------------------------|--------------------------|---------------|
+| **CLAUDE.md** | Team behavioral rules | Personal style preferences | Commit project-level to repo; keep personal in `~/.claude/CLAUDE.md` |
+| **settings.json** | Shared hooks, env vars | Personal permissions, hooks | User settings override project settings |
+| **Hooks** (.sh scripts) | Not recommended | Always here | Hooks are machine-specific; do not commit to team repos |
+| **Agents** (.md files) | Team-shared agents | Personal agents | Both locations are loaded; user supplements project |
+| **Skills** | Team workflows | Personal workflows | Both loaded; user supplements project |
+| **Rules** | Team constraints | Personal constraints | Both loaded; path-scoped by glob pattern |
+| **Memory** | Never | Always here | Memory is personal and should never be in a shared repo |
+
+### Cross-Platform User Config Paths
+
+| AI Coding Tool | Windows | macOS / Linux |
+|---------------|---------|---------------|
+| Claude Code | `C:\Users\{user}\.claude\` | `~/.claude/` |
+| Cursor | `C:\Users\{user}\.cursor\` | `~/.cursor/` |
+| Codex CLI | `C:\Users\{user}\.codex\` | `~/.codex/` |
+| Gemini CLI | `C:\Users\{user}\.gemini\` | `~/.gemini/` |
+| Windsurf | `C:\Users\{user}\.codeium\windsurf\` | `~/.codeium/windsurf/` |
+| VS Code | `.vscode/` in project (project-level only) | Same (project-level only) |
+| GitHub Copilot | Configured through IDE settings | Same |
+
+### Team Collaboration Safety
+
+When you fork this blueprint for a team, follow these rules to protect shared config:
+
+- **Never let an AI agent modify shared project configs** — `.claude/settings.json`, `CLAUDE.md`, or team rules without human review first
+- **Personal hooks, permissions, and environment variables** belong in `~/.claude/settings.json`, not in the project
+- **When asking Claude to "set up the blueprint"**, always specify: "install to my user-level config at `~/.claude/`" to avoid confusion
+- **Memory is personal** — no developer should ever commit their `~/.claude/projects/*/memory/` to the team repo
 
 ---
 

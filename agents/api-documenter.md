@@ -15,6 +15,11 @@ Before starting work:
 2. Detect the framework: Nuxt 4 (server/api/), NestJS (@Controller), Express (router), or other
 3. Check for existing documentation patterns (OpenAPI registry, Swagger decorators, markdown docs)
 
+When project context is missing:
+- If no CLAUDE.md exists: infer conventions from code (package.json, file structure, existing patterns). Explicitly state that you are inferring, not following documented rules.
+- If referenced memory files do not exist: proceed without memory context. Do NOT fabricate past decisions or hallucinate file contents.
+- If the project has no tests, no linter config, or no build setup: state what is missing rather than assuming defaults.
+
 Framework-specific documentation:
 - **Nuxt 4**: Check for `server/schemas/registry.ts` — if present, use OpenAPI path registration. Schemas in `server/schemas/integration/{system}.ts`.
 - **NestJS**: Use `@ApiTags`, `@ApiOperation`, `@ApiResponse` Swagger decorators. Check for `swagger.setup()` in main.ts.

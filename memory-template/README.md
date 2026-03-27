@@ -1,5 +1,7 @@
 # Memory System — Git-Backed Persistent Memory
 
+**Privacy Notice:** This memory system will contain your work history, preferences, and project context. **Keep the repository private.** If you accidentally push memory files to a public repo, treat it as a data exposure -- review what was published and rotate any credentials that may have been captured in diary entries or session notes.
+
 A structured, git-backed memory system that gives your AI assistant persistent context across sessions, IDE reinstalls, and machine changes.
 
 ## Why This Exists
@@ -52,6 +54,29 @@ Create a rule at `~/.claude/rules/session-lifecycle.md` that reads your memory f
 
 Your memory contains personal context — keep the repo private. The blueprint teaches the *pattern*; your data stays yours.
 
+## Recommended .gitignore
+
+Add this to your memory repository's `.gitignore`:
+
+```
+# Never commit secrets or credentials
+.env
+.env.*
+*.key
+*.pem
+
+# IDE and OS artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+```
+
 ## File Structure
 
 ```
@@ -70,6 +95,17 @@ templates/
   ├── adr-template.md     — Reusable ADR template for architectural decisions
   └── coding-template.md  — Template for new project entries
 ```
+
+## What NOT to Store
+
+Even in a private repo, avoid storing:
+- API keys, tokens, or passwords (use environment variables or a secrets manager)
+- Database connection strings with credentials
+- Personally identifiable information (PII) of others -- names, emails, IDs
+- Proprietary code snippets from employer/client projects
+- Access credentials for production systems
+
+Memory files should contain **context** (what you were working on, decisions made, conventions learned) -- not **secrets** (anything that grants access to a system).
 
 ## How It Works
 

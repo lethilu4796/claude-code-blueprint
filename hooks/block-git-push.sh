@@ -7,8 +7,14 @@
 # Exit code 2 = deny (blocks the command)
 # Exit code 0 = allow
 
+PYTHON=$(command -v python3 2>/dev/null || command -v python 2>/dev/null)
+if [ -z "$PYTHON" ]; then
+  echo "block-git-push: python not found -- hook cannot parse input" >&2
+  exit 0
+fi
+
 INPUT=$(cat)
-COMMAND=$(echo "$INPUT" | python -c "
+COMMAND=$(echo "$INPUT" | $PYTHON -c "
 import sys, json
 try:
     d = json.load(sys.stdin)

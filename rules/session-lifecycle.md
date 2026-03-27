@@ -6,7 +6,7 @@
   The hook and rule are safety nets; the skill is the full restoration.
 -->
 
-> **Before using:** Replace `{MEMORYCORE_PATH}` and `{CLAUDE_CONFIG_PATH}` with your actual paths in your copy of this rule.
+> **SETUP REQUIRED:** Replace `{MEMORYCORE_PATH}` and `{CLAUDE_CONFIG_PATH}` with your actual paths before using this rule. If you skip this step, Claude will attempt to read file paths containing literal curly braces (e.g., `{MEMORYCORE_PATH}/core/session.md`), which will produce confusing "file not found" errors. See [skills/README.md](../skills/README.md#required-replace-placeholder-variables) for platform-specific examples.
 
 # Session Lifecycle — Automatic Behaviors
 
@@ -37,7 +37,7 @@ When the user signals they're done — phrases like "bye", "goodbye", "done", "t
 3. **Update per-project context**: If working on a registered project, update `{MEMORYCORE_PATH}/projects/active/{project}.md` → Session Context section
 4. **If the session was significant** (feature shipped, bug fixed, architecture decision, new project started): append a diary entry to `{MEMORYCORE_PATH}/diary/current/YYYY-MM-DD.md`
 5. **If new technical learnings or gotchas** were discovered: update `{CLAUDE_CONFIG_PATH}/projects/{project}/memory/MEMORY.md`
-6. **Git commit + push** all MemoryCore changes to GitHub (`git push origin main`)
+6. **Git commit + push** all MemoryCore changes (adjust remote and branch name to match your memory repo's configuration)
 7. Move any next-steps that have persisted across 3+ sessions to `reminders.md` — session.md is for ephemeral context, not persistent deferrals
 
 ## Key Behavioral Notes

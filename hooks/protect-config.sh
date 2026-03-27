@@ -2,7 +2,8 @@
 # Hook: PreToolUse (Write|Edit) — Config Protection
 # Prevents weakening linter/formatter/build configs by prompting for confirmation.
 
-PYTHON=$(command -v python3 2>/dev/null || command -v python 2>/dev/null || echo "python3")
+PYTHON=$(command -v python3 2>/dev/null || command -v python 2>/dev/null)
+if [ -z "$PYTHON" ]; then exit 0; fi
 
 INPUT=$(cat)
 
