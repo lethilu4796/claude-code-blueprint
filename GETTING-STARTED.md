@@ -303,7 +303,7 @@ Claude will use the `mcp__context7__resolve-library-id` and `mcp__context7__quer
   "mcpServers": {
     "playwright": {
       "command": "npx",
-      "args": ["-y", "@anthropic-ai/mcp-playwright@latest"]
+      "args": ["-y", "@playwright/mcp@latest"]
     }
   }
 }

@@ -1,6 +1,6 @@
 # Memory System — Git-Backed Persistent Memory
 
-**Privacy Notice:** This memory system will contain your work history, preferences, and project context. **Keep the repository private.** If you accidentally push memory files to a public repo, treat it as a data exposure -- review what was published and rotate any credentials that may have been captured in diary entries or session notes.
+**Privacy Notice:** This memory system will contain your work history, preferences, and project context. **Keep your memory repository private** (this is a separate repo from the blueprint -- your fork of claude-code-blueprint should stay public). If you accidentally push memory files to a public repo, treat it as a data exposure -- review what was published and rotate any credentials that may have been captured in diary entries or session notes.
 
 A structured, git-backed memory system that gives your AI assistant persistent context across sessions, IDE reinstalls, and machine changes.
 
@@ -50,9 +50,9 @@ When working with memory files:
 
 Create a rule at `~/.claude/rules/session-lifecycle.md` that reads your memory files at session start and updates them at session end. See the `skills/` directory in the blueprint for `load-session`, `save-session`, and `session-end` skills that automate this.
 
-### 4. Keep it private
+### 4. Keep your memory repo private
 
-Your memory contains personal context — keep the repo private. The blueprint teaches the *pattern*; your data stays yours.
+Your memory repo contains personal context -- keep it as a **private** repository. This is separate from your fork of the blueprint itself, which should remain **public** (to contribute back, receive updates, and support the community). The blueprint teaches the *pattern*; your personal data stays in your private memory repo.
 
 ## Recommended .gitignore
 

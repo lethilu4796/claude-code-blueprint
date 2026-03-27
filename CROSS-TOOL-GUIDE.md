@@ -113,7 +113,7 @@ Hooks are deterministic automation that fires on specific events (before/after f
 **Windsurf** auto-generates memories during conversations, stored in `~/.codeium/windsurf/memories/`. Workspace-scoped, persists across sessions. Users can also write durable facts to `.windsurf/rules/` files.
 
 **What to copy:** The [memory-template/](memory-template/) pattern works with ANY tool:
-1. Create a private git repo with the scaffold files
+1. Create a **separate private** git repo for your memory data (not in your blueprint fork)
 2. At session start, paste relevant context from `session.md` into your conversation
 3. At session end, update the files with what happened
 4. The manual step is copy/paste — only Claude Code auto-loads this

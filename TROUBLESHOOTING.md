@@ -358,6 +358,28 @@ See [agents/README.md](agents/README.md#what-happens-when-maxturns-is-reached) f
 
 ---
 
+## Shell Compatibility
+
+### "I use Fish / Zsh / another shell -- will hooks work?"
+
+Hook scripts use `#!/bin/bash` and are invoked via `bash "path/to/hook.sh"` in settings.json. **Your default shell does not matter** -- Claude Code always runs hooks through bash explicitly. The hooks do not depend on your login shell, shell aliases, or shell-specific syntax.
+
+However, if you write custom hooks that source your shell profile (`~/.bashrc`, `~/.zshrc`), those will not be loaded during hook execution. Keep hooks self-contained.
+
+### "I cloned the repo and got the full git history"
+
+If you `git clone` (instead of fork or cherry-pick), you get the blueprint's entire git history. This is harmless -- it just adds ~1MB to your `.git/` directory. If you want a clean start:
+
+```bash
+# Remove blueprint history, keep only files
+rm -rf .git
+git init
+git add .
+git commit -m "Initial setup from claude-code-blueprint"
+```
+
+---
+
 ## Syntax Changes
 
 ### Deprecated colon wildcard syntax

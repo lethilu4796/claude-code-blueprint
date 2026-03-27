@@ -6,6 +6,35 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-03-28
+
+### Fixed
+- **Hook safety**: Python fallback in `block-git-push.sh`, JSON injection in `post-commit-review.sh`/`precompact-state.sh`/`cost-tracker.sh`, shell injection in `session-start.sh`/`verify-mcp-sync.sh`, error handling in `session-checkpoint.sh`
+- **Factual accuracy**: Permission modes table was missing `code-reviewer` and `security-reviewer` (across 4 files), `CONTRIBUTING.md` had wrong model IDs and non-existent "Notification" event, lifecycle event count was 12 (should be 10), `git push` allow-list claim was wrong
+- **Playwright MCP**: Package name corrected from `@anthropic-ai/mcp-playwright` to `@playwright/mcp`
+- **Agent inconsistencies**: Removed `Bash` from `db-analyst`/`devops-engineer` tools (contradicts `permissionMode: plan`), removed `skills: [review]` from `security-reviewer` (recursion risk)
+- **Cost tracker**: Added 10MB size cap to prevent unbounded JSONL growth
+- **Python version**: Hooks now require Python 3.6+ (f-strings used), was incorrectly claiming 2.7+
+
+### Added
+- **Agent hardening**: "When project context is missing" graceful degradation in all 11 agents
+- **agents/README.md**: maxTurns table, cost estimates, hallucination warnings, instruction compliance explanation
+- **Configuration placement**: "Where Config Belongs" section in GETTING-STARTED.md with project-vs-personal table and cross-platform paths for 7 AI tools
+- **Safer setup prompt**: Explicitly directs to `~/.claude/`, not project directory
+- **Placeholder variables**: All 6 documented in skills/README.md with grep check command
+- **Privacy notice**: Bold warning + `.gitignore` template + "What NOT to Store" in memory-template/README.md
+- **Troubleshooting**: 7 new sections (MEMORYCORE_PATH, agent permissions, maxTurns, config placement, Windows hooks, shell compatibility, git history)
+- **Safety callouts**: "Before You Start" in README.md + all 3 localized READMEs (ja/ko/zh), secrets warning in CLAUDE.md
+- `.gitattributes` enforcing LF line endings for `.sh` files
+- `hooks/test-hooks.sh` smoke test script (35 tests: syntax, Python detection, empty/malformed/missing-field input)
+
+### Changed
+- Version badge updated from 2.1.83 to 2.1.85
+- All hooks now use unified Python detection with "not found" stderr warning
+- All hooks construct JSON via Python `json.dumps()` (no shell string interpolation)
+- Pricing URLs standardized to `docs.anthropic.com`
+- Removed version-pinned feature attributions ("new in 2.1.83")
+
 ## 2026-03-26
 
 ### Added

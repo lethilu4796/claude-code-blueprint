@@ -50,6 +50,18 @@ if os.path.isfile(metrics_file):
     except Exception:
         pass  # rotation is best-effort
 
+# Size guard — cap at 10MB to prevent unbounded growth
+MAX_SIZE = 10 * 1024 * 1024  # 10 MB
+if os.path.isfile(metrics_file) and os.path.getsize(metrics_file) > MAX_SIZE:
+    try:
+        with open(metrics_file, 'r') as f:
+            lines = f.readlines()
+        # Keep the most recent half
+        with open(metrics_file, 'w') as f:
+            f.writelines(lines[len(lines)//2:])
+    except Exception:
+        pass  # truncation is best-effort
+
 # Append JSONL entry
 entry = {
     'session_id': os.environ.get('HOOK_SESSION_ID', 'unknown'),

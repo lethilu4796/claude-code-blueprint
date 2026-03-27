@@ -62,3 +62,5 @@ echo 'not json' | bash hooks/block-git-push.sh
 ```
 
 **Expected behavior on bad input:** Every hook exits 0 (allow/no-op). No hook should crash, block, or produce error output on malformed input. This is by design -- hooks failing open is safer than hooks failing closed.
+
+**Automated smoke test:** Run `bash hooks/test-hooks.sh` to verify all hooks pass syntax checks and handle empty/malformed/missing-field input gracefully. Run this after making any changes to hook scripts.

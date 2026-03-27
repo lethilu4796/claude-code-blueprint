@@ -164,9 +164,9 @@ When using `"auto"` mode, you can tell the classifier about your trusted infrast
 
 **What it does:** Provides context so the classifier can distinguish between "pushing to our GitHub org" (safe) and "pushing to an unknown remote" (blocked).
 
-**Important:** Only set `environment`. Do NOT set `autoMode.allow` or `autoMode.soft_deny` unless you copy ALL defaults first -- setting them **replaces the entire default list**. Run `claude auto-mode defaults` to see the built-in rules.
+**Important:** Only set `environment`. Do NOT set `autoMode.allow` or `autoMode.soft_deny` unless you copy ALL defaults first -- setting them **replaces the entire default list**.
 
-**Verification:** Run `claude auto-mode config` to see effective rules, or `claude auto-mode critique` for AI feedback on your configuration.
+**Verification:** Check your effective auto mode configuration by reviewing `~/.claude/settings.json` and any project-level overrides. Consult Claude Code's CLI reference (`claude --help`) for available auto-mode subcommands in your version.
 
 ### Team Settings (managed-settings.d/)
 
