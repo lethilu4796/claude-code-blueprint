@@ -14,6 +14,12 @@
 
 **刚接触 Claude Code？** 从 [GETTING-STARTED.md](GETTING-STARTED.md) 开始——一份对初学者友好的指南，覆盖 CLI、MCP 服务器、插件和你的前 30 分钟体验。
 
+### 开始前须知
+
+> **重要：** 这是一份参考架构，而非项目模板。请**不要**在此存储库内运行 Claude Code — 它会读取蓝图自身的 CLAUDE.md，而忽略你项目的规则。请 Fork 或将文件选择性地移入你自己的项目。
+>
+> 某些文件包含占位符变量（`{MEMORYCORE_PATH}`、`{PROJECTS_ROOT}`），需要替换为实际路径。Hooks 和设置应该放在**用户级** 配置（`~/.claude/`）中，而不是项目目录。完整的设置指南请参见 [GETTING-STARTED.md](GETTING-STARTED.md)。
+
 ## 包含的内容
 
 | 组件 | 数量 | 用途 |
