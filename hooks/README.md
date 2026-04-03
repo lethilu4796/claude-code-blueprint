@@ -18,8 +18,10 @@
 | SessionEnd | Session terminates | session-checkpoint.sh | Guaranteed final save |
 | CwdChanged | Working directory changes | *(not used)* | Auto-load project context on directory switch |
 | FileChanged | External file modification detected | *(not used)* | React to .env changes, config reloads |
+| PermissionDenied | Auto mode classifier denies an action | *(not used)* | React to auto-mode blocks (log, retry with `{retry: true}`) |
+| TaskCreated | Background task spawned via TaskCreate | *(not used)* | Track or gate background agent spawning |
 
-> `CwdChanged` and `FileChanged` are available but not used in this blueprint. They're useful for monorepo setups (auto-switching context on `cd`) or reactive config reloading.
+> `CwdChanged`, `FileChanged`, `PermissionDenied`, and `TaskCreated` are available but not used in this blueprint. They're useful for monorepo setups (auto-switching context on `cd`), reactive config reloading, auto-mode denial logging, and background agent governance.
 
 **Utility scripts** (not lifecycle hooks -- run manually):
 - `verify-mcp-sync.sh` — Compares MCP server configs across CLI, VS Code extension, and Cursor. Run with `bash ~/.claude/hooks/verify-mcp-sync.sh`

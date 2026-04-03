@@ -62,6 +62,18 @@ These live under the `"env"` key in `settings.json` and control Claude Code's ru
 
 **Who needs it:** Everyone running MCP servers or custom hooks. Minimal risk to enable -- your hooks and MCP servers almost never need your Anthropic API key.
 
+### CLAUDE_CODE_NO_FLICKER
+
+```json
+"CLAUDE_CODE_NO_FLICKER": "1"
+```
+
+**What it does:** Enables flicker-free alt-screen rendering with virtualized scrollback. Eliminates visual flicker during streaming responses.
+
+**When to use:** If you experience screen flashing or flickering during Claude's responses, especially in certain terminal emulators (iTerm2, tmux, WezTerm). Has no downside -- safe to enable always.
+
+**Default:** Not set (standard rendering).
+
 ---
 
 ## Top-Level Settings
@@ -98,6 +110,20 @@ Auto-deletes Claude Code session data older than 60 days. This includes conversa
 
 **Trade-off:** Better reasoning quality, especially for subtle bugs and architectural decisions. Costs more tokens per response (thinking tokens are billed). For simple tasks like "rename this variable," extended thinking is overkill -- but the quality improvement on complex tasks outweighs the cost.
 
+### showThinkingSummaries
+
+```json
+"showThinkingSummaries": true
+```
+
+**What it does:** Shows summarized thinking output in the UI. Since v2.1.89, thinking summaries are **off by default** -- you must opt in to see them.
+
+**Why it changed:** Most users found summaries noisy during normal coding. Disabling them by default keeps the output clean while `alwaysThinkingEnabled` still gives Claude full reasoning depth behind the scenes.
+
+**When to set true:** If you like seeing Claude's reasoning process, or if you're debugging why Claude made a particular decision. Pairs well with `alwaysThinkingEnabled: true`.
+
+**Default:** `false` (since v2.1.89).
+
 ### effortLevel
 
 ```json
@@ -109,6 +135,18 @@ Auto-deletes Claude Code session data older than 60 days. This includes conversa
 **Options:** `"low"`, `"medium"`, `"high"`. Lower effort = faster, cheaper responses. Higher effort = more thorough reasoning.
 
 **Recommendation:** Start with `"high"` for development work. Switch to `"medium"` or `"low"` for repetitive tasks like bulk file edits or documentation generation.
+
+### disableSkillShellExecution
+
+```json
+"disableSkillShellExecution": true
+```
+
+**What it does:** Prevents skills and custom slash commands from executing shell commands inline. Skills can still instruct Claude to use the Bash tool (which goes through normal permission checks), but they cannot embed shell execution directly.
+
+**When to use:** Security-conscious teams that want skills to suggest commands but not execute them autonomously. Also useful when onboarding new skills from the community that you haven't fully reviewed.
+
+**Default:** `false` (skills can execute shell commands).
 
 ---
 
@@ -138,6 +176,7 @@ The auto mode classifier (runs on Sonnet 4.6) reviews each non-allow-listed acti
 - Hooks still run regardless of mode -- your `block-git-push.sh` and `protect-config.sh` remain active
 - Classifier calls add token cost (small per call, but adds up in long sessions)
 - If the classifier blocks an action 3 times consecutively, it falls back to prompting you
+- The `PermissionDenied` hook (v2.1.89+) fires after each classifier denial -- return `{retry: true}` to retry, or use it for logging/alerting
 
 **Recommendation:**
 - **New users:** Don't set this. Use the default mode until you trust your setup.

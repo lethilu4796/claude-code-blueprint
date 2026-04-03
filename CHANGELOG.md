@@ -6,6 +6,23 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-04-03
+
+### Added
+- **CROSS-TOOL-GUIDE.md**: Cursor coverage expansion -- hooks.json example, `permissions.json`, `.cursorignore`, CLI/IDE hook disparity, "Cursor in depth" section
+- **hooks/README.md + ARCHITECTURE.md**: `PermissionDenied` and `TaskCreated` hook events (available but not used in blueprint)
+- **SETTINGS-GUIDE.md**: `disableSkillShellExecution` setting, `showThinkingSummaries` setting (default off since v2.1.89), `CLAUDE_CODE_NO_FLICKER` env var, `PermissionDenied` hook note under auto mode
+- **GETTING-STARTED.md**: `/powerup` interactive tutorial mention for beginners
+- **agents/README.md**: Named subagent pattern (`name` parameter for `@` mention and `SendMessage` addressability)
+
+### Changed
+- Version badge updated from 2.1.85 to 2.1.91
+- Cursor hooks reframed from "partial subset" to "different surfaces" (11 hook types listed by name)
+- Removed unconfirmed `.cursor/agents/*.md` claims from CROSS-TOOL-GUIDE.md (feature not shipped)
+
+### Fixed
+- Added `permissions.json` alongside `cli-config.json` at all Cursor references in CROSS-TOOL-GUIDE.md
+
 ## 2026-03-28
 
 ### Fixed

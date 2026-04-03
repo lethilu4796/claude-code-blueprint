@@ -25,6 +25,8 @@ There are multiple ways to use Claude Code. Pick the one that fits you:
 
 All methods support CLAUDE.md, agents, skills, and hooks. The CLI gives the most control, but you don't need it to get started.
 
+> **First time?** Try `/powerup` in any Claude Code session for interactive lessons with animated demos -- it's the fastest way to learn the features.
+
 ### Which Model Should I Use?
 
 Claude Code can use different AI models. Here's what to pick:

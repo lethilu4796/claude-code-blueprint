@@ -23,6 +23,9 @@ Active Session
   ├─ PostToolUseFailure hooks
   │   └─ mcp__* ──→ fallback guidance prompt
   │
+  ├─ PermissionDenied hooks (auto mode)
+  │   └─ (available) ──→ log or retry after classifier blocks
+  │
   ├─ PreCompact ──→ precompact-state.sh (serialize state to disk)
   ├─ PostCompact ──→ context recovery prompt (read state file)
   │

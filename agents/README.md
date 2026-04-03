@@ -31,6 +31,10 @@ Every agent follows this structure:
 
 Review agents (verify-plan, code-reviewer, security-reviewer) use `isolation: worktree` for fresh-context reviews. This creates a temporary git worktree so the agent sees a clean copy of the repo. If the project is not a git repository, worktree isolation is skipped and the agent runs in the main context.
 
+## Named Subagents
+
+Agents can be given a `name` parameter when spawned, making them addressable via `SendMessage({to: name})` and visible in `@` mention typeahead. This is useful for long-running background agents or multi-agent coordination where you need to send follow-up instructions to a specific agent.
+
 ## What Happens When maxTurns Is Reached
 
 Each agent has a `maxTurns` limit in its frontmatter that caps the number of tool calls + responses. When reached, the agent stops gracefully. Any work already written to disk (file edits, test runs, commits) persists.
