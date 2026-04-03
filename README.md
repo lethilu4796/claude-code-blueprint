@@ -242,6 +242,8 @@ Run `./setup.sh` from a cloned or forked copy. Choose a preset (minimal/standard
 | Token savings, cost impact, quality metrics | Ready-to-copy configs for solo, team, and CI/CD | Cursor, Codex CLI, Gemini CLI, Windsurf |
 | **[FAQ](FAQ.md)** | **[Getting Started](GETTING-STARTED.md)** | **[Troubleshooting](TROUBLESHOOTING.md)** |
 | Top community questions answered | From zero to productive in 30 minutes | Common issues and fixes |
+| **[Setup Guide](SETUP.md)** | **[Examples](examples/)** | **[Roadmap](ROADMAP.md)** |
+| Automated installer + verification checklist | Framework-specific CLAUDE.md templates | Project direction and what's next |
 
 ---
 

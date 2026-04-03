@@ -21,6 +21,15 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 - **FAQ.md**: setup.sh shortcut added to "A colleague sent me this link" section
 - **GETTING-STARTED.md**: Cross-links to SETUP.md and setup.sh in "Let Claude Code Set Up for You" and "5-Minute Setup" sections
 - **README.ja.md, README.ko.md, README.zh.md**: Setup automation block and Option D mirrored with translations
+- **ROADMAP.md**: Project direction with Completed/In Progress/Planned/Not Planned sections and contribution guidance
+- **examples/claude-md-python.md**: Complete copy-ready CLAUDE.md with Python/FastAPI/Django/SQLAlchemy stack rules
+- **examples/claude-md-react.md**: Complete copy-ready CLAUDE.md with React/Next.js/TypeScript/Tailwind/Zod stack rules
+- **examples/claude-md-go.md**: Complete copy-ready CLAUDE.md with Go/Gin/GORM/golangci-lint stack rules
+- **examples/claude-md-rails.md**: Complete copy-ready CLAUDE.md with Rails/RSpec/Rubocop/Sidekiq stack rules
+- **examples/README.md**: Index of all example files with copy commands and usage guide
+- **.github/workflows/ci.yml**: GitHub Actions CI with hook smoke tests, markdown link checker (lychee), and markdown linting (markdownlint-cli2)
+- **README.md**: Deep Dives grid expanded to 4x3 (added Setup Guide, Examples, Roadmap row)
+- **README.ja.md, README.ko.md, README.zh.md**: Deep Dives grid expansion mirrored
 
 ### Changed
 - **README.md**: Hero subtitle rewritten to lead with benefits ("Make Claude Code smarter, safer, and more consistent -- for any project, at any skill level")
