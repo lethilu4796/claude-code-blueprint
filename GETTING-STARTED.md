@@ -12,6 +12,17 @@ If you've never configured Claude Code before, this section is for you. Skip to 
 
 This is a collection of configuration files that make Claude Code smarter, safer, and more consistent. Think of it as a recipe book — you pick the recipes you need and add them to your own kitchen. The most important file is **CLAUDE.md**, which tells Claude Code how to behave (like a set of house rules it follows every session).
 
+### Got This Link from a Colleague?
+
+Welcome. Here's your fastest path:
+
+1. **Right now (60 seconds):** Open [CLAUDE.md](CLAUDE.md) in this repo. Click "Raw" (top-right), copy everything, and paste it into a new file called `CLAUDE.md` in your project's root folder.
+2. **Start using Claude Code normally.** No special prompts needed. Claude automatically reads CLAUDE.md and follows the three rules inside it (Verify-After-Complete, Diagnose-First, Plan-Before-Execute).
+3. **When curious:** Read the rest of this section to understand what Claude Code is and how to access it.
+4. **When ready for more:** Follow the [recommended adoption path](README.md#recommended-adoption-path) to add hooks, agents, and skills incrementally.
+
+No installation required. No dependencies. No package manager. Just one markdown file to start.
+
 ### How to Access Claude Code
 
 There are multiple ways to use Claude Code. Pick the one that fits you:
@@ -141,6 +152,8 @@ Several files in this blueprint contain placeholder variables like `{MEMORYCORE_
 ### Ready for More?
 
 The rest of this guide covers the full Claude Code ecosystem — prerequisites, MCP servers, agents, skills, hooks, and memory systems. Continue to [Prerequisites](#prerequisites) when you're ready to go deeper.
+
+> **Have questions?** See the [FAQ](FAQ.md) for answers to the most common community questions -- framework support, skill levels, pricing plans, and more.
 
 ---
 
@@ -620,7 +633,8 @@ Once you're comfortable with the basics:
 7. **Architecture** — Read [ARCHITECTURE.md](ARCHITECTURE.md) for how everything connects
 8. **Stack rule templates** — See [PRESETS.md](PRESETS.md#stack-rule-templates) for framework-agnostic CLAUDE.md snippets by project type
 9. **Cross-tool** — Read [CROSS-TOOL-GUIDE.md](CROSS-TOOL-GUIDE.md) if you also use Cursor, Codex, or Gemini
-10. **Troubleshooting** — Read [TROUBLESHOOTING.md](TROUBLESHOOTING.md) if something isn't working as expected
+10. **FAQ** — See [FAQ.md](FAQ.md) for answers to the most common community questions
+11. **Troubleshooting** — Read [TROUBLESHOOTING.md](TROUBLESHOOTING.md) if something isn't working as expected
 
 ---
 

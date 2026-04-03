@@ -2,7 +2,7 @@
 
 # Claude Code 蓝图
 
-**经过实战验证的参考架构，为 Claude Code 高级用户设计。不是插件——是一份蓝图，用来学习和改进。**
+**让 Claude Code 更智能、更安全、更一致 -- 适用于任何项目、任何技能水平。不是插件 -- 是一份蓝图，用来学习和改进。**
 
 [![Stars](https://img.shields.io/github/stars/faizkhairi/claude-code-blueprint?style=flat)](https://github.com/faizkhairi/claude-code-blueprint/stargazers)
 [![Forks](https://img.shields.io/github/forks/faizkhairi/claude-code-blueprint?style=flat)](https://github.com/faizkhairi/claude-code-blueprint/network/members)
@@ -33,7 +33,7 @@ curl -o CLAUDE.md https://raw.githubusercontent.com/faizkhairi/claude-code-bluep
 
 **Verify-After-Complete** · **Diagnose-First** · **Plan-Before-Execute**
 
-准备好深入了解？查看[完整采用路径](#推荐的采用路径)或[30 分钟初学者指南](GETTING-STARTED.md)。
+准备好深入了解？查看[完整采用路径](#推荐的采用路径)或[30 分钟初学者指南](GETTING-STARTED.md)。Claude Code 新手？查看[适用对象](#这是为谁准备的)或 [FAQ](FAQ.md)。
 
 ---
 
@@ -42,6 +42,32 @@ curl -o CLAUDE.md https://raw.githubusercontent.com/faizkhairi/claude-code-bluep
 > **重要：** 这是一份参考架构，而非项目模板。请**不要**在此存储库内运行 Claude Code — 它会读取蓝图自身的 CLAUDE.md，而忽略你项目的规则。请 Fork 或将文件选择性地移入你自己的项目。
 >
 > 某些文件包含占位符变量（`{MEMORYCORE_PATH}`、`{PROJECTS_ROOT}`），需要替换为实际路径。Hooks 和设置应该放在**用户级**配置（`~/.claude/`）中，而不是项目目录。完整的设置指南请参见 [GETTING-STARTED.md](GETTING-STARTED.md)。
+
+---
+
+## 这是为谁准备的？
+
+任何开发者、任何框架、任何技能水平。
+
+| 你的身份 | 从这里开始 | 价值实现时间 |
+|---------|----------|------------|
+| **完全新手** | [Start Here](GETTING-STARTED.md#new-to-claude-code-start-here) | 1 分钟：只需复制 CLAUDE.md |
+| **独立开发者，小项目** | [CLAUDE.md](CLAUDE.md) + 2 个 hook | 5 分钟 |
+| **小初创（2-5 人）** | 上述 + 共享规则 + 2-3 个 agents | 参见 [Team Setup](GETTING-STARTED.md#setting-up-for-teams) |
+| **成熟团队（5+ 人）** | 完整蓝图，根据需要改进 | Fork、定制、提交共享配置 |
+| **学习编程** | 仅 [GETTING-STARTED.md](GETTING-STARTED.md) | 在熟悉前忽略 agents/skills/memory |
+| **从其他工具迁移** | [CROSS-TOOL-GUIDE.md](CROSS-TOOL-GUIDE.md) | 概念可转移；参见该指南中的 *Cursor in depth* |
+
+### 你的进阶路径
+
+**Level 1 -- 从这里开始（60 秒）**
+将 CLAUDE.md 复制到你的项目。三条行为规则。立竿见影。
+
+**Level 2 -- 添加安全网（5 分钟）**
+添加 2-3 个 hooks。零 token 成本。自动配置保护和编辑验证。
+
+**Level 3 -- 随成长定制（持续进行）**
+随着工作流成熟，添加 agents、skills、rules 和内存系统。参见 [Presets](PRESETS.md) 获取即用配置。
 
 ---
 
@@ -57,6 +83,7 @@ curl -o CLAUDE.md https://raw.githubusercontent.com/faizkhairi/claude-code-bluep
 | [初学者友好的](GETTING-STARTED.md)包含 6 个采用角色 | 假设具有专业知识 |
 | [烟雾测试的 hooks](hooks/test-hooks.sh)包含 35 个自动化测试 | 未测试的脚本 |
 | 安全优先：[配置放置指南](GETTING-STARTED.md#where-config-belongs-project-vs-personal)、隐私警告、[优雅降级](agents/README.md#agents-are-not-infallible) | 无安全指导 |
+| [框架无关](FAQ.md#what-framework-or-language-does-this-work-with)：支持任何语言和技术栈 | 假设使用特定语言/框架 |
 
 ---
 
@@ -172,17 +199,6 @@ curl -o CLAUDE.md https://raw.githubusercontent.com/faizkhairi/claude-code-bluep
 
 ## 开始使用
 
-### 这是为谁准备的？
-
-| 你的身份 | 从这里开始 | 采用 |
-|---------|----------|------|
-| **完全新手** | [Start Here](GETTING-STARTED.md#new-to-claude-code-start-here) | 1 分钟设置：只需复制 CLAUDE.md |
-| **独立开发者，小项目** | [CLAUDE.md](CLAUDE.md) + 2 个 hook | 足够了。不要过度设计。 |
-| **小初创（2-5 人）** | 上述 + 共享规则 + 2-3 个 agents | 参见 [Team Setup](GETTING-STARTED.md#setting-up-for-teams) |
-| **成熟团队（5+ 人）** | 完整蓝图，根据需要改进 | Fork、定制、提交共享配置 |
-| **学习编程** | 仅 [GETTING-STARTED.md](GETTING-STARTED.md) | 在熟悉前忽略 agents/skills/memory |
-| **从其他工具迁移** | [CROSS-TOOL-GUIDE.md](CROSS-TOOL-GUIDE.md) | 概念可转移；根据需要改进 |
-
 ### 选项 A：Fork（推荐）
 Fork 本仓库并将其定制为你自己的活文档参考。之后可以拉取上游更新，随着蓝图的演变而更新。
 
@@ -210,12 +226,20 @@ Clone 仓库，然后有选择地将组件复制到你的 `~/.claude/` 目录。
 | 系统设计、hook 生命周期、组件关系 | 每个环境变量、权限和 hook 的完整说明及理由 | 每个组件背后的事件和教训 |
 | **[基准测试](BENCHMARKS.md)** | **[预设](PRESETS.md)** | **[跨工具指南](CROSS-TOOL-GUIDE.md)** |
 | Token 节省、成本影响、质量指标 | 为独立开发者、团队和 CI/CD 提供的现成配置 | Cursor、Codex CLI、Gemini CLI、Windsurf |
+| **[FAQ](FAQ.md)** | **[Getting Started](GETTING-STARTED.md)** | **[Troubleshooting](TROUBLESHOOTING.md)** |
+| 社区常见问题解答 | 从零到高效 30 分钟 | 常见问题与解决方案 |
 
 ---
 
-## 故障排除
+## 常见问题
 
-参见 [TROUBLESHOOTING.md](TROUBLESHOOTING.md) 了解常见问题的解决方案 -- hooks 未触发、agents 失败、MCP 崩溃、成本意外、Windows 特定问题等。
+**支持我的框架吗？** 是的，蓝图框架无关 -- 它配置 Claude Code 的行为，而非你的技术栈。[详情...](FAQ.md#what-framework-or-language-does-this-work-with)
+
+**对我来说太高级了？** 不是。从一个文件（CLAUDE.md）开始，需要时再添加更多。[详情...](FAQ.md#im-a-juniorintermediate-developer-is-this-for-me)
+
+**需要哪个套餐？** Pro、Max、Team、Enterprise、API 均可。所有套餐的 hooks 均免费。[详情...](FAQ.md#which-claude-code-plan-do-i-need-does-this-work-with-pro--max--api)
+
+**同事发给你的？** 从这里开始：[推荐入门快速指南](FAQ.md#a-colleague-sent-me-this-link-what-do-i-do-first)。
 
 ---
 

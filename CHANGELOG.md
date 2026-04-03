@@ -6,6 +6,25 @@ Format based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-04-04
+
+### Added
+- **FAQ.md**: New file answering top 9 community questions -- framework agnosticism, skill levels, subscription plans, tool compatibility, colleague quickstart, "I'm overwhelmed" guidance, AI-vs-learning, cost/tokens
+- **README.md**: "Who Is This For?" persona table moved above the fold (from line 173 to ~line 47) with new "Time to Value" column and Level 1/2/3 skill progression
+- **README.md**: Mini-FAQ section (4 one-line answers linking to FAQ.md)
+- **README.md**: Deep Dives grid expanded from 2x3 to 3x3 (added FAQ, Getting Started, Troubleshooting)
+- **GETTING-STARTED.md**: "Got This Link from a Colleague?" quickstart flow in beginner section
+- **GETTING-STARTED.md**: FAQ.md link at end of beginner section and in "What to Learn Next" list
+
+### Changed
+- **README.md**: Hero subtitle rewritten to lead with benefits ("Make Claude Code smarter, safer, and more consistent -- for any project, at any skill level")
+- **README.md**: "What Makes This Different" table gains framework-agnostic row
+- **README.md**: Standalone Troubleshooting section absorbed into Deep Dives grid
+- **README.ja.md, README.ko.md, README.zh.md**: All structural changes mirrored with translations
+- **README.zh.md**: Hero subtitle rewritten to remove "advanced users" framing (was "为 Claude Code 高级用户设计")
+- GitHub repo description updated: removed "power users", added "framework-agnostic" and "beginner-friendly"
+- GitHub topics: added `beginner-friendly`, `framework-agnostic`
+
 ## 2026-04-03
 
 ### Added

@@ -2,7 +2,7 @@
 
 # Claude Code Blueprint
 
-**A battle-tested reference architecture for Claude Code. Not a plugin to install -- a blueprint to learn from and adapt.**
+**Make Claude Code smarter, safer, and more consistent -- for any project, at any skill level. Not a plugin to install -- a blueprint to learn from and adapt.**
 
 [![Stars](https://img.shields.io/github/stars/faizkhairi/claude-code-blueprint?style=flat)](https://github.com/faizkhairi/claude-code-blueprint/stargazers)
 [![Forks](https://img.shields.io/github/forks/faizkhairi/claude-code-blueprint?style=flat)](https://github.com/faizkhairi/claude-code-blueprint/network/members)
@@ -33,7 +33,7 @@ This gives Claude Code three rules that prevent the most common AI coding mistak
 
 **Verify-After-Complete** · **Diagnose-First** · **Plan-Before-Execute**
 
-Ready for more? See the [full adoption path](#recommended-adoption-path) or the [30-minute beginner guide](GETTING-STARTED.md).
+Ready for more? See the [full adoption path](#recommended-adoption-path) or the [30-minute beginner guide](GETTING-STARTED.md). New to Claude Code? See [who this is for](#who-is-this-for) or the [FAQ](FAQ.md).
 
 ---
 
@@ -42,6 +42,32 @@ Ready for more? See the [full adoption path](#recommended-adoption-path) or the 
 > **Important:** This is a reference architecture, not a project template. Do **not** run Claude Code inside this repository -- it will read the blueprint's own CLAUDE.md instead of your project's rules. Fork or cherry-pick files into your own project.
 >
 > Several files contain placeholder variables (`{MEMORYCORE_PATH}`, `{PROJECTS_ROOT}`) that you must replace with your actual paths. Hooks and settings belong in your **user-level** config (`~/.claude/`), not in your project directory. See [GETTING-STARTED.md](GETTING-STARTED.md) for the full setup guide.
+
+---
+
+## Who Is This For?
+
+**Any developer, any framework, any skill level.** The blueprint configures Claude Code's behavior -- it doesn't care what language or framework your project uses.
+
+| You Are | Start Here | Time to Value |
+|---------|-----------|---------------|
+| **Complete beginner** | [Start Here](GETTING-STARTED.md#new-to-claude-code-start-here) | 1 minute: just copy CLAUDE.md |
+| **Solo dev, small project** | [CLAUDE.md](CLAUDE.md) + 2 hooks | 5 minutes |
+| **Small startup (2-5 devs)** | Above + shared rules + 2-3 agents | See [Team Setup](GETTING-STARTED.md#setting-up-for-teams) |
+| **Established team (5+ devs)** | Full blueprint, adapted | Fork, customize, commit shared config |
+| **Learning to code** | [GETTING-STARTED.md](GETTING-STARTED.md) only | Ignore agents/skills/memory until comfortable |
+| **Coming from another tool** | [CROSS-TOOL-GUIDE.md](CROSS-TOOL-GUIDE.md) | Concepts transfer; see *Cursor in depth* in that guide |
+
+### Your Progression
+
+**Level 1 -- Start here (60 seconds)**
+Copy CLAUDE.md into your project. Three behavioral rules. Immediate impact.
+
+**Level 2 -- Add safety nets (5 minutes)**
+Add 2-3 hooks. Zero token cost. Automated config protection and edit verification.
+
+**Level 3 -- Customize as you grow (ongoing)**
+Add agents, skills, rules, and memory as your workflow matures. See [Presets](PRESETS.md) for ready-to-copy configurations.
 
 ---
 
@@ -57,6 +83,7 @@ Other repos give you **135 agents**. We give you **11** -- and explain why each 
 | [Beginner-friendly](GETTING-STARTED.md) with 6 adoption personas | Assumed expertise |
 | [Smoke-tested hooks](hooks/test-hooks.sh) with 35 automated tests | Untested scripts |
 | Safety-first: [config placement guide](GETTING-STARTED.md#where-config-belongs-project-vs-personal), privacy warnings, [graceful degradation](agents/README.md#agents-are-not-infallible) | No safety guidance |
+| [Framework-agnostic](FAQ.md#what-framework-or-language-does-this-work-with): works with any language and stack | Assumes a specific language/framework |
 
 ---
 
@@ -172,17 +199,6 @@ See [rules/README.md](rules/README.md) for creating custom rules.
 
 ## Getting Started
 
-### Who is this for?
-
-| You Are | Start Here | Adopt |
-|---------|-----------|-------|
-| **Complete beginner** | [Start Here](GETTING-STARTED.md#new-to-claude-code-start-here) | 1-minute setup: just copy CLAUDE.md |
-| **Solo dev, small project** | [CLAUDE.md](CLAUDE.md) + 2 hooks | Enough. Don't over-engineer. |
-| **Small startup (2-5 devs)** | Above + shared rules + 2-3 agents | See [Team Setup](GETTING-STARTED.md#setting-up-for-teams) |
-| **Established team (5+ devs)** | Full blueprint, adapted | Fork, customize, commit shared config |
-| **Learning to code** | [GETTING-STARTED.md](GETTING-STARTED.md) only | Ignore agents/skills/memory until comfortable |
-| **Coming from another tool** | [CROSS-TOOL-GUIDE.md](CROSS-TOOL-GUIDE.md) | Concepts transfer; **Cursor + Claude Code users:** see *Cursor in depth* in that guide (dual config, skills, `cli-config`, hooks nuance) |
-
 ### Option A: Fork (recommended)
 Fork this repo to customize it as your own living reference. You can pull upstream updates later as the blueprint evolves.
 
@@ -210,12 +226,20 @@ Browse the repo on GitHub and copy only the specific files you need. No installa
 | System design, hook lifecycle, component relationships | Every env var, permission, and hook explained with rationale | The incidents and lessons behind every component |
 | **[Benchmarks](BENCHMARKS.md)** | **[Presets](PRESETS.md)** | **[Cross-Tool Guide](CROSS-TOOL-GUIDE.md)** |
 | Token savings, cost impact, quality metrics | Ready-to-copy configs for solo, team, and CI/CD | Cursor, Codex CLI, Gemini CLI, Windsurf |
+| **[FAQ](FAQ.md)** | **[Getting Started](GETTING-STARTED.md)** | **[Troubleshooting](TROUBLESHOOTING.md)** |
+| Top community questions answered | From zero to productive in 30 minutes | Common issues and fixes |
 
 ---
 
-## Troubleshooting
+## Common Questions
 
-See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for solutions to common issues -- hooks not firing, agents failing, MCP crashes, cost surprises, Windows-specific problems, and more.
+**Works with my framework?** Yes. The blueprint is framework-agnostic -- it configures Claude Code, not your stack. [More...](FAQ.md#what-framework-or-language-does-this-work-with)
+
+**Too advanced for me?** No. Start with one file (CLAUDE.md). Add more only when you need it. [More...](FAQ.md#im-a-juniorintermediate-developer-is-this-for-me)
+
+**Which plan do I need?** Works on Pro, Max, Team, Enterprise, and API. Hooks are free on all plans. [More...](FAQ.md#which-claude-code-plan-do-i-need-does-this-work-with-pro--max--api)
+
+**A colleague sent you this?** Start here: [quickstart for referrals](FAQ.md#a-colleague-sent-me-this-link-what-do-i-do-first).
 
 ---
 
