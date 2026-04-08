@@ -1,6 +1,7 @@
 #!/bin/bash
 # Tool: MCP Config Sync Checker
-# Compares MCP server configs across CLI, extension, and Cursor.
+# Compares MCP server configs across CLI (~/.claude.json), VS Code extension
+# (~/.claude/mcp.json), and Cursor (~/.cursor/mcp.json).
 # Run manually: bash ~/.claude/hooks/verify-mcp-sync.sh
 
 # Use Windows-style paths for Python compatibility
@@ -39,9 +40,9 @@ EXT_SERVERS=$(extract_servers "$EXT_CONFIG")
 CURSOR_SERVERS=$(extract_servers "$CURSOR_CONFIG")
 
 echo "=== MCP Config Sync Check ==="
-echo "CLI     : $CLI_SERVERS"
-echo "Extension: $EXT_SERVERS"
-echo "Cursor  : $CURSOR_SERVERS"
+echo "CLI (~/.claude.json)     : $CLI_SERVERS"
+echo "Extension (~/.claude/mcp): $EXT_SERVERS"
+echo "Cursor (~/.cursor/mcp)   : $CURSOR_SERVERS"
 echo ""
 
 if [ "$CLI_SERVERS" = "$EXT_SERVERS" ] && [ "$EXT_SERVERS" = "$CURSOR_SERVERS" ]; then

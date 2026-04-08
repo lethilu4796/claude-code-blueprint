@@ -6,7 +6,7 @@ While this blueprint is built for Claude Code, the **principles are universal**.
 
 | Tool | Behavioral Rules | Main Config | User Config Directory | Custom Agents / Skills | MCP Config |
 |------|-----------------|-------------|----------------------|------------------------|------------|
-| **Claude Code** | `CLAUDE.md` | `~/.claude/settings.json` | `~/.claude/` | `.claude/agents/*.md` + `~/.claude/skills/` | `.claude.json` or settings |
+| **Claude Code** | `CLAUDE.md` | `~/.claude/settings.json` | `~/.claude/` | `.claude/agents/*.md` + `~/.claude/skills/` | `.mcp.json` (project) or `~/.claude.json` (user) |
 | **Copilot** | `.github/copilot-instructions.md` + `.instructions.md` | `~/.copilot/config.json` | `~/.copilot/` | `.github/agents/*.agent.md` | `.vscode/mcp.json` or `~/.copilot/mcp-config.json` |
 | **Cursor** | `.cursor/rules/*.mdc` + User Rules | `cli-config.json` / `permissions.json` | `~/.cursor/` | `~/.cursor/skills/` + built-in subagents | `~/.cursor/mcp.json` or Settings UI |
 | **Cline** | `.clinerules/` dir or `.clinerules` file | `~/.cline/data/globalState.json` | `~/.cline/` | `.clinerules/workflows/*.md` | `~/.cline/settings/cline_mcp_settings.json` |

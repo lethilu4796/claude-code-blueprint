@@ -264,7 +264,7 @@ You type a message
 
 ---
 
-## MCP Servers — Giving Claude Superpowers
+## MCP Servers -- Giving Claude Superpowers
 
 ### What Are MCP Servers?
 
@@ -276,13 +276,43 @@ MCP (Model Context Protocol) servers are external processes that give Claude new
 - **Query databases** (various DB MCPs)
 - **Interact with APIs** (custom MCPs)
 
-MCP servers are safe to use alongside this blueprint — they add tools, not rules, so there's no conflict with your configuration.
+MCP servers are safe to use alongside this blueprint -- they add tools, not rules, so there's no conflict with your configuration.
 
-### Setting Up Your First MCP Server: Context7
+### Adding MCP Servers
 
-Context7 fetches up-to-date documentation for any library. Instead of Claude relying on its training data (which may be outdated), it can look up the latest docs in real-time.
+#### Option A: CLI (Recommended)
 
-**Step 1:** Add to your project's `.claude.json` (create it in project root if it doesn't exist):
+The `claude mcp add` command is the easiest way to add MCP servers. Run it in your terminal (or VS Code's integrated terminal):
+
+```bash
+# Context7 -- live library documentation (works for any project)
+claude mcp add context7 -- npx -y @upstash/context7-mcp@latest
+
+# Playwright -- browser automation (works for any web project)
+claude mcp add playwright -- npx -y @playwright/mcp@latest
+```
+
+By default, servers are added to the **local** scope (this session only). Use `--scope` to control where the config is saved:
+
+```bash
+# Available in every project (saved to ~/.claude.json)
+claude mcp add --scope user context7 -- npx -y @upstash/context7-mcp@latest
+
+# Shared with your team via git (saved to .mcp.json in project root)
+claude mcp add --scope project playwright -- npx -y @playwright/mcp@latest
+```
+
+After adding, use it naturally:
+
+```
+You: "Look up the latest Prisma client API docs using Context7 and show me how to use findMany with pagination"
+```
+
+Claude will use the `mcp__context7__resolve-library-id` and `mcp__context7__query-docs` tools automatically.
+
+#### Option B: Manual JSON Config
+
+If you prefer editing config files directly (or need to set up MCP in CI/CD), create `.mcp.json` in your project root:
 
 ```json
 {
@@ -295,56 +325,38 @@ Context7 fetches up-to-date documentation for any library. Instead of Claude rel
 }
 ```
 
-**Step 2:** Restart Claude Code. Context7 is now available.
-
-**Step 3:** Use it naturally:
-
-```
-You: "Look up the latest Prisma client API docs using Context7 and show me how to use findMany with pagination"
-```
-
-Claude will use the `mcp__context7__resolve-library-id` and `mcp__context7__query-docs` tools automatically.
+After manual edits, restart Claude Code to load the new servers.
 
 ### Recommended MCP Servers for Beginners
 
 | MCP Server | What It Does | When You Need It |
 |------------|-------------|-----------------|
 | **Context7** | Fetches up-to-date library documentation | When working with any framework or library |
-| **Playwright** | Controls a real browser — navigate, click, fill forms, screenshot | When you need to verify UI, test in browser, or scrape |
-| **Docker** | Runs Docker commands through Claude | When managing containers, builds, or compose stacks |
-
-**Adding Playwright MCP:**
-
-```json
-{
-  "mcpServers": {
-    "playwright": {
-      "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest"]
-    }
-  }
-}
-```
-
-**Adding Docker MCP:**
-
-```json
-{
-  "mcpServers": {
-    "docker": {
-      "command": "docker",
-      "args": ["run", "-i", "--rm", "mcp/docker"]
-    }
-  }
-}
-```
+| **Playwright** | Controls a real browser -- navigate, click, fill forms, screenshot | When you need to verify UI, test in browser, or scrape |
+| **Docker** (optional) | Runs Docker commands through Claude | When managing containers (requires Docker Desktop) |
 
 ### Where MCP Config Lives
 
-| Scope | File | When to Use |
-|-------|------|------------|
-| **Project** | `.claude.json` in project root | MCP servers specific to this project |
-| **User** | `~/.claude.json` | MCP servers you want in every project |
+| Scope | File | Created By | When to Use |
+|-------|------|-----------|------------|
+| **Project** | `.mcp.json` in project root | `claude mcp add --scope project` | Shared with team (commit to git) |
+| **User** | `~/.claude.json` | `claude mcp add --scope user` | Available in every project |
+| **Local** | (session state) | `claude mcp add` (default) | Temporary, this session only |
+
+> **Note:** The VS Code extension also reads from `~/.claude/mcp.json`. If you use both CLI and the extension, run [verify-mcp-sync.sh](hooks/verify-mcp-sync.sh) to check they're in sync.
+
+Manage your servers anytime:
+
+```bash
+claude mcp list              # Show all configured servers
+claude mcp remove <name>     # Remove a server
+```
+
+### Managing MCP Servers in VS Code
+
+The VS Code extension uses the same config files as the CLI -- no separate setup needed. To add a new MCP server, run `claude mcp add` in VS Code's integrated terminal (`` Ctrl+` `` or `` Cmd+` ``).
+
+Once servers are added, type `/mcp` in the Claude Code chat panel to manage them: enable/disable servers, reconnect after a crash, or complete OAuth flows. The `/mcp` dialog manages existing servers -- adding new ones requires the CLI command.
 
 ### Allowing MCP Tools in Permissions
 
@@ -364,7 +376,19 @@ After adding an MCP server, you need to allow its tools in `settings.json`:
 }
 ```
 
-Or let Claude ask for permission each time (safer for beginners — just don't add them to the allow list).
+Or let Claude ask for permission each time (safer for beginners -- just don't add them to the allow list).
+
+### Troubleshooting MCP Servers
+
+**"MCP tool call failed"** -- If you installed the blueprint's hooks, the `PostToolUseFailure` hook automatically instructs Claude to retry once and then fall back to non-MCP alternatives (e.g., `curl` instead of Playwright, `docker` CLI instead of Docker MCP).
+
+**"MCP tools not appearing"** -- Three quick checks:
+
+1. **Restart Claude Code** after any config changes (MCP servers load at startup)
+2. **Verify the config file** is in the right location (`.mcp.json` for project, `~/.claude.json` for user)
+3. **Run `claude mcp list`** to confirm the server is registered and connected
+
+For more causes and fixes, see [TROUBLESHOOTING.md -- MCP Servers](TROUBLESHOOTING.md#mcp-servers). If you use Claude Code across CLI, VS Code, and Cursor, the [verify-mcp-sync.sh](hooks/verify-mcp-sync.sh) utility checks that MCP configs are consistent across all three.
 
 ---
 
@@ -443,7 +467,13 @@ This prevents Claude from "fixing" lint errors by disabling lint rules.
 
 ### Minute 10-15: Add Context7 MCP
 
-Follow the Context7 setup above. Now Claude can look up any library's latest docs in real-time.
+Run this in your terminal:
+
+```bash
+claude mcp add --scope user context7 -- npx -y @upstash/context7-mcp@latest
+```
+
+Restart Claude Code. Now Claude can look up any library's latest docs in real-time.
 
 ### Minute 15-20: Add Cost Tracking
 

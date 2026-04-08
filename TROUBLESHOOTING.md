@@ -101,11 +101,11 @@ Common issues and fixes. Search this page (Ctrl+F) for your error message or sym
 
 ### "MCP tools not appearing"
 
-**Symptoms:** You added an MCP server to `.claude.json` but the tools don't show up.
+**Symptoms:** You added an MCP server to `.mcp.json` (or `~/.claude.json`) but the tools don't show up.
 
 **Causes and fixes:**
 
-1. **Wrong config file location.** Project-level MCP config goes in `.claude.json` in the project root (not `.claude/settings.json`). Global MCP config goes in `~/.claude.json`.
+1. **Wrong config file location.** Project-level MCP config goes in `.mcp.json` in the project root (not `.claude.json` or `.claude/settings.json`). User-level MCP config goes in `~/.claude.json`. Verify what's registered with `claude mcp list`.
 
 2. **Tools not in the permissions allow list.** After adding an MCP server, its tools must be listed in `settings.json` under `permissions.allow`:
    ```json
@@ -114,7 +114,7 @@ Common issues and fixes. Search this page (Ctrl+F) for your error message or sym
    ```
    Or let Claude ask for permission each time (don't add to the list).
 
-3. **Restart required.** MCP servers are loaded at startup. After changing `.claude.json`, restart Claude Code.
+3. **Restart required.** MCP servers are loaded at startup. After changing `.mcp.json` or `~/.claude.json`, restart Claude Code.
 
 ---
 
